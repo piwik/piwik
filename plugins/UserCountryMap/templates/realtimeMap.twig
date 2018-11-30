@@ -2,6 +2,7 @@
      data-standalone="{{ mapIsStandaloneNotWidget|default(0) }}"
      data-config="{{ config|json_encode }}"
      tabindex="0">
+    {% if not isWidgetized %}<h2 class="card-title">{{ 'UserCountryMap_RealTimeMap'|translate }}</h2>{% endif %}
 
     <div class="RealTimeMap_container">
         <div class="RealTimeMap_map" style="overflow:hidden;"></div>

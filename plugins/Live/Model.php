@@ -58,6 +58,43 @@ class Model
 
         return $visits;
     }
+    /**
+     * @param $idSite
+     * @param $period
+     * @param $date
+     * @param $segment
+     * @param $limit
+     * @param $filterSortOrder
+     * @param $checkforMoreEntries
+     * @return array
+     * @throws Exception
+     */
+    public function queryLogVisitors($idSite, $period, $date, $segment, $offset, $limit, $filterSortColumn, $filterSortOrder, $checkforMoreEntries = false)
+    {
+        // to check for more entries increase the limit by one, but cut off the last entry before returning the result
+        if ($checkforMoreEntries) {
+            $limit++;
+        }
+
+        list($sql, $bind) = $this->makeLogVisitorsQueryString($idSite, $period, $date, $segment, $offset, $limit, $filterSortColumn, $filterSortOrder);
+
+        $visits = Db::fetchAll($sql, $bind);
+        $visits = array_map(function ($visit) {
+            $visit['label'] = bin2hex($visit['label']);
+            return $visit;
+        }, $visits);
+
+        if ($checkforMoreEntries) {
+            if (count($visits) == $limit) {
+                array_pop($visits);
+                return [$visits, true];
+            }
+
+            return [$visits, false];
+        }
+
+        return $visits;
+    }
 
     /**
      * @param $idSite
@@ -317,6 +354,87 @@ class Model
 
     /**
      * @param $idSite
+     * @param $period
+     * @param $date
+     * @param $segment
+     * @param int $offset
+     * @param int $limit
+     * @param $visitorId
+     * @param $minTimestamp
+     * @param $filterSortColumn
+     * @param $filterSortOrder
+     * @return array
+     * @throws Exception
+     */
+    public function makeLogVisitorsQueryString($idSite, $period, $date, $segment, $offset, $limit, $filterSortColumn, $filterSortOrder)
+    {
+        // If no other filter, only look at the last 24 hours of stats
+        if (empty($limit)
+            && empty($offset)
+            && empty($period)
+            && empty($date)
+        ) {
+            $period = 'day';
+            $date = 'yesterdaySameTime';
+        }
+
+        list($whereClause, $bindIdSites) = $this->getIdSitesWhereClause($idSite);
+
+        list($whereBind, $where) = $this->getWhereClauseAndBind($whereClause, $bindIdSites, $idSite, $period, $date, $visitorId = false, $minTimestamp = false);
+
+        if (strtolower($filterSortOrder) !== 'asc') {
+            $filterSortOrder = 'DESC';
+        }
+
+        $segment = new Segment($segment, $idSite);
+
+        // we need to compute avg spent here to make sure the sort works correctly when limiting the result
+        $select = "log_visit.idvisitor as label, log_visit.user_id, count(log_visit.idvisit) as nb_visits, sum(log_visit.visit_total_time) as sum_time_spent, avg(log_visit.visit_total_time) as avg_time_spent, sum(log_visit.visit_goal_converted) as nb_conversions, sum(log_visit.visit_total_actions) as nb_actions";
+        $from = "log_visit";
+        $groupBy = "label";
+        $limit = $limit >= 1 ? (int)$limit : 0;
+        $offset = $offset >= 1 ? (int)$offset : 0;
+
+        $orderBy = '';
+        if (count($bindIdSites) <= 1) {
+            $orderBy = 'idsite ' . $filterSortOrder . ', ';
+        }
+
+        $sortColumns = array('label', 'user_id', 'nb_visits', 'sum_time_spent', 'avg_time_spent', 'nb_conversions', 'nb_actions');
+        if (!$filterSortColumn || !in_array($filterSortColumn, $sortColumns)) {
+            $filterSortColumn = 'nb_conversions';
+        }
+
+        $orderBy .= $filterSortColumn . ' ' . $filterSortOrder;
+        $orderByParent = "sub." . $filterSortColumn . ' ' . $filterSortOrder;
+
+        // this $innerLimit is a workaround (see https://github.com/piwik/piwik/issues/9200#issuecomment-183641293)
+        $innerLimit = $limit;
+        if (!$segment->isEmpty()) {
+            $innerLimit = $limit * 10;
+        }
+
+        $innerQuery = $segment->getSelectQuery($select, $from, $where, $whereBind, $orderBy, $groupBy, $innerLimit, $offset);
+
+        $bind = $innerQuery['bind'];
+        // Group by idvisit so that a given visit appears only once, useful when for example:
+        // 1) when a visitor converts 2 goals
+        // 2) when an Action Segment is used, the inner query will return one row per action, but we want one row per visit
+        $sql = "
+			SELECT sub.* FROM (
+				" . $innerQuery['sql'] . "
+			) AS sub
+			GROUP BY sub.label
+			ORDER BY $orderByParent
+		";
+        if($limit) {
+            $sql .= sprintf("LIMIT %d \n", $limit);
+        }
+        return array($sql, $bind);
+    }
+
+    /**
+     * @param $idSite
      * @return Site
      */
     protected function makeSite($idSite)
@@ -363,7 +481,7 @@ class Model
             }
 
             $dateString = $date;
-            if ($period == 'range') {
+            if ($period == 'range' || Period::isMultiplePeriod($date, $period)) {
                 $processedPeriod = new Range('range', $date);
                 if ($parsedDate = Range::parseDateRange($date)) {
                     $dateString = $parsedDate[2];

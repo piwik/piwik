@@ -1,3 +1,5 @@
+{% if not isWidgetized %}<div piwik-content-block content-title="{{ title|translate|e('html_attr') }}">{% endif %}
+
 <div class='simple-realtime-visitor-widget' data-refreshAfterXSecs="{{ refreshAfterXSecs }}" data-last-minutes="{{ lastMinutes }}" data-translations="{{ translations|json_encode }}">
     <div class='simple-realtime-visitor-counter' title="{% if visitors == 1 %}{{ 'Live_NbVisitor'|translate }}{% else %}{{ 'Live_NbVisitors'|translate(visitors) }}{% endif %}">
         <div>{{ visitors }}</div>
@@ -19,3 +21,5 @@
     </div>
 </div>
 <script type="text/javascript">$(document).ready(function () {require('piwik/Live').initSimpleRealtimeVisitorWidget();});</script>
+
+{% if not isWidgetized %}</div>{% endif %}

@@ -34,6 +34,7 @@ class Controller extends \Piwik\Plugin\Controller
         
         $view = new View('@Live/index');
         $view->idSite = $this->idSite;
+        $view->isWidgetized = Common::getRequestVar('widget', 0, 'int');
         $view = $this->setCounters($view);
         $view->liveRefreshAfterMs = (int)Config::getInstance()->General['live_widget_refresh_after_seconds'] * 1000;
         $view->visitors = $this->getLastVisitsStart();

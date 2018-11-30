@@ -6,14 +6,14 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  */
-namespace Piwik\Plugins\UserId\Categories;
+namespace Piwik\Plugins\Live\Categories;
 
 use Piwik\Category\Subcategory;
 
-class VisitorsUserSubcategory extends Subcategory
+class VisitorsSubcategory extends Subcategory
 {
     protected $categoryId = 'General_Profiles';
-    protected $id = 'UserId_UserReportTitle';
-    protected $order = 30;
+    protected $id = 'General_Visitors';
+    protected $order = 25;
 
 }

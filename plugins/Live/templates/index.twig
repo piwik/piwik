@@ -32,6 +32,8 @@
     });
 </script>
 
+{% if not isWidgetized %}<div piwik-content-block content-title="{{ 'Live_VisitorsInRealTime'|translate|e('html_attr') }}">{% endif %}
+
 {% include "@Live/_totalVisitors.twig" %}
 
 {{ visitors|raw }}
@@ -50,3 +52,5 @@
     {% endif %}
 </div>
 {% endspaceless %}
+
+{% if not isWidgetized %}</div>{% endif %}

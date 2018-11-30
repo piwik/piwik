@@ -21,8 +21,8 @@ class GetLastVisitsDetails extends Base
     {
         parent::init();
         $this->order = 2;
-        $this->categoryId = 'General_Visitors';
-        $this->subcategoryId = 'Live_VisitorLog';
+        $this->categoryId = 'General_Profiles';
+        $this->subcategoryId = 'Live_VisitsLog';
     }
 
     public function getDefaultTypeViewDataTable()
@@ -39,7 +39,7 @@ class GetLastVisitsDetails extends Base
     {
         $widget = $factory->createWidget()
                           ->forceViewDataTable(VisitorLog::ID)
-                          ->setName('Live_VisitorLog')
+                          ->setName('Live_VisitsLog')
                           ->setOrder(10)
                           ->setParameters(array('small' => 1));
         $widgetsList->addWidgetConfig($widget);

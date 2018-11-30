@@ -218,6 +218,7 @@ class Controller extends \Piwik\Plugin\Controller
 
         $reqParams = $this->getEnrichedRequest($params, $encode = false);
 
+        $view->isWidgetized = Common::getRequestVar('widget', 0, 'int');
         $view->config = array(
             'metrics'            => array(),
             'svgBasePath'        => $view->piwikUrl . 'plugins/UserCountryMap/svg/',

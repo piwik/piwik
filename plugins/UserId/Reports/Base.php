@@ -14,6 +14,6 @@ abstract class Base extends Report
 {
     protected function init()
     {
-        $this->categoryId = 'General_Visitors';
+        $this->categoryId = 'General_Profiles';
     }
 }

@@ -14,6 +14,13 @@
   }
 }
 
+.card {
+  #visitsLive {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
 #visitsLive .settings {
   border-bottom: 1px solid @color-silver-l90;
 }
@@ -431,6 +438,15 @@ a.visitor-log-visitor-profile-link {
     display: inline-block;
     float: left;
     margin-right: 15px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .card #visitsLive .visitorLogIcons:before {
+    content: none;
+  }
+  .card #visitsLive .referrer {
+    float: right;
   }
 }
 
