@@ -125,7 +125,7 @@ class TrackerUpdater
     public function update()
     {
         if (!$this->toFile->hasWriteAccess() || !$this->fromFile->hasReadAccess()) {
-            return;
+            return; // TODO: maybe report this in a diagnostic?
         }
 
         $newContent = $this->getUpdatedTrackerFileContent();

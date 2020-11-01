@@ -191,6 +191,11 @@ class Setting
     public function save()
     {
         $this->storage->save();
+
+        if ($this->config->onValueSaved) {
+            $cb = $this->config->onValueSaved;
+            $cb($this);
+        }
     }
 
     /**

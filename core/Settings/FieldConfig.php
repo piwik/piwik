@@ -259,4 +259,13 @@ class FieldConfig
      */
     public $validators = [];
 
+    /**
+     * Closure to execute when a value is saved. This can be used to, eg, trigger an event
+     * or regenerate a file, etc.
+     *
+     * The function should accept one argument, the Setting being saved.
+     *
+     * @var \Closure
+     */
+    public $onValueSaved = null;
 }

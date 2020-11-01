@@ -32,7 +32,23 @@ class CoreAdminHome extends \Piwik\Plugin
             'Template.jsGlobalVariables' => 'addJsGlobalVariables',
             'Translate.getClientSideTranslationKeys' => 'getClientSideTranslationKeys',
             'System.addSystemSummaryItems' => 'addSystemSummaryItems',
+            'CustomJsTracker.manipulateJsTracker' => 'manipulateJsTracker',
         );
+    }
+
+    public function manipulateJsTracker(&$content)
+    {
+        $settings = new SystemSettings();
+
+        $areCookiesEnabled = $settings->enableTrackingCookies->getValue();
+        if (empty($areCookiesEnabled)) {
+            $this->disableCookiesInJsTracker($content);
+        }
+    }
+
+    private function disableCookiesInJsTracker(&$content)
+    {
+        $content .= '(function () { window._paq = window._paq || []; window._paq.push([\'requireCookieConsent\']);})()';
     }
 
     public function addSystemSummaryItems(&$systemSummary)
