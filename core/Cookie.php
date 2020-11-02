@@ -246,7 +246,7 @@ class Cookie
             // no numeric value are base64 encoded so we need to decode them
             if (!is_numeric($varValue)) {
                 $tmpValue = base64_decode($varValue);
-                $varValue = safe_unserialize($tmpValue);
+                $varValue = Common::safe_unserialize($tmpValue);
 
                 // discard entire cookie
                 // note: this assumes we never serialize a boolean

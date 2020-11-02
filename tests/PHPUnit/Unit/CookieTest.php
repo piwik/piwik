@@ -8,6 +8,7 @@
 
 namespace Piwik\Tests\Unit;
 
+use Piwik\Common;
 use Piwik\Cookie;
 
 class CookieTest extends \PHPUnit\Framework\TestCase
@@ -85,8 +86,8 @@ class CookieTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertEquals(serialize($testData), safe_serialize($testData), $id);
         $this->assertEquals($testData, unserialize(safe_serialize($testData)), $id);
-        $this->assertSame($testData, safe_unserialize(safe_serialize($testData)), $id);
-        $this->assertSame($testData, safe_unserialize(serialize($testData)), $id);
+        $this->assertSame($testData, Common::safe_unserialize(safe_serialize($testData)), $id);
+        $this->assertSame($testData, Common::safe_unserialize(serialize($testData)), $id);
     }
 
     /**
@@ -102,9 +103,9 @@ class CookieTest extends \PHPUnit\Framework\TestCase
         // intentionally disabled; this doesn't work
 //        $this->assertEquals( safe_serialize($testData), serialize($testData) );
         $this->assertEquals($testData, unserialize(safe_serialize($testData)));
-        $this->assertSame($testData, safe_unserialize(safe_serialize($testData)));
+        $this->assertSame($testData, Common::safe_unserialize(safe_serialize($testData)));
         // workaround: cast floats into strings
-        $this->assertSame($testData, safe_unserialize(serialize($testData)));
+        $this->assertSame($testData, Common::safe_unserialize(serialize($testData)));
 
         $unserialized = array(
             'announcement' => true,
@@ -130,29 +131,29 @@ class CookieTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($unserialized, unserialize($serialized));
         $this->assertEquals($serialized, serialize($unserialized));
 
-        $this->assertSame($unserialized, safe_unserialize($serialized));
+        $this->assertSame($unserialized, Common::safe_unserialize($serialized));
         $this->assertEquals($serialized, safe_serialize($unserialized));
-        $this->assertSame($unserialized, safe_unserialize(safe_serialize($unserialized)));
-        $this->assertEquals($serialized, safe_serialize(safe_unserialize($serialized)));
+        $this->assertSame($unserialized, Common::safe_unserialize(safe_serialize($unserialized)));
+        $this->assertEquals($serialized, safe_serialize(Common::safe_unserialize($serialized)));
 
         $a = 'O:31:"Test_Piwik_Cookie_Phantom_Class":0:{}';
-        $this->assertFalse(safe_unserialize($a), "test: unserializing an object where class not (yet) defined");
+        $this->assertFalse(Common::safe_unserialize($a), "test: unserializing an object where class not (yet) defined");
 
         $a = 'O:28:"Test_Piwik_Cookie_Mock_Class":0:{}';
-        $this->assertFalse(safe_unserialize($a), "test: unserializing an object where class is defined");
+        $this->assertFalse(Common::safe_unserialize($a), "test: unserializing an object where class is defined");
 
         $a = 'a:1:{i:0;O:28:"Test_Piwik_Cookie_Mock_Class":0:{}}';
-        $this->assertFalse(safe_unserialize($a), "test: unserializing nested object where class is defined");
+        $this->assertFalse(Common::safe_unserialize($a), "test: unserializing nested object where class is defined");
 
         $a = 'a:2:{i:0;s:4:"test";i:1;O:28:"Test_Piwik_Cookie_Mock_Class":0:{}}';
-        $this->assertFalse(safe_unserialize($a), "test: unserializing another nested object where class is defined");
+        $this->assertFalse(Common::safe_unserialize($a), "test: unserializing another nested object where class is defined");
 
         $a = 'O:28:"Test_Piwik_Cookie_Mock_Class":1:{s:34:"' . "\0" . 'Test_Piwik_Cookie_Mock_Class' . "\0" . 'name";s:4:"test";}';
-        $this->assertFalse(safe_unserialize($a), "test: unserializing object with member where class is defined");
+        $this->assertFalse(Common::safe_unserialize($a), "test: unserializing object with member where class is defined");
 
         // arrays and objects cannot be used as keys, i.e., generates "Warning: Illegal offset type ..."
         $a = 'a:2:{i:0;a:0:{}O:28:"Test_Piwik_Cookie_Mock_Class":0:{}s:4:"test";';
-        $this->assertFalse(safe_unserialize($a), "test: unserializing with illegal key");
+        $this->assertFalse(Common::safe_unserialize($a), "test: unserializing with illegal key");
     }
 
     public function test_isCookieInRequest_ReturnsTrueIfCookieExists()
