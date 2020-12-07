@@ -70,11 +70,19 @@ matrix:
       addons: false
     # All tests after another
     - php: 8.0
-      env: TEST_SUITE=AllTests MYSQL_ADAPTER=MYSQLI ALLTEST_EXTRA_OPTIONS="--run-first-half-only"
+      env: TEST_SUITE=AllTests MYSQL_ADAPTER=MYSQLI ALLTEST_EXTRA_OPTIONS="--run-first-half-only" SKIP_COMPOSER_INSTALL=1
       sudo: required
+      before_install:
+        - composer install --ignore-platform-reqs
+        - composer remove --dev phpunit/phpunit
+        - composer require --dev phpunit/phpunit ~9.3 --ignore-platform-reqs
     - php: 8.0
-      env: TEST_SUITE=AllTests MYSQL_ADAPTER=MYSQLI ALLTEST_EXTRA_OPTIONS="--run-second-half-only"
+      env: TEST_SUITE=AllTests MYSQL_ADAPTER=MYSQLI ALLTEST_EXTRA_OPTIONS="--run-second-half-only" SKIP_COMPOSER_INSTALL=1
       sudo: required
+      before_install:
+        - composer install --ignore-platform-reqs
+        - composer remove --dev phpunit/phpunit
+        - composer require --dev phpunit/phpunit ~9.3 --ignore-platform-reqs
     # UITests use a specific version because the default 5.5 (== 5.5.38) is missing FreeType support
     - php: 7.2
       env: TEST_SUITE=UITests MYSQL_ADAPTER=PDO_MYSQL UITEST_EXTRA_OPTIONS="--num-test-groups=3 --test-group=0"
