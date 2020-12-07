@@ -8,13 +8,13 @@
 
 namespace Piwik\Plugins\Monolog\tests\Unit\Processor;
 
+use PHPUnit\Runner\Version;
 use Piwik\Access;
 use Piwik\Common;
 use Piwik\Db;
 use Piwik\Log;
 use Piwik\Piwik;
 use Piwik\Plugins\Monolog\Processor\ExceptionToTextProcessor;
-use Piwik\SettingsPiwik;
 
 /**
  * @group Log
@@ -167,7 +167,7 @@ test message
 #11 {main}
 EOI;
 
-        $this->assertEquals($expected, $wholeTrace);
+        $this->assertEquals($this->handleNewerPHPUnitTrace($expected), $wholeTrace);
     }
 
     public function test_getMessageAndWholeBacktrace_printsBacktraceIf_PIWIK_PRINT_ERROR_BACKTRACE_isDefined()
@@ -196,7 +196,7 @@ test message
 #11 {main}
 EOI;
 
-        $this->assertEquals($expected, $wholeTrace);
+        $this->assertEquals($this->handleNewerPHPUnitTrace($expected), $wholeTrace);
     }
 
     public function test_getMessageAndWholeBacktrace_printsBacktraceIf_PIWIK_TRACKER_DEBUG_globalIsSet()
@@ -225,7 +225,7 @@ test message
 #11 {main}
 EOI;
 
-        $this->assertEquals($expected, $wholeTrace);
+        $this->assertEquals($this->handleNewerPHPUnitTrace($expected), $wholeTrace);
     }
 
     public function test_getMessageAndWholeBacktrace_handlesArrayInput_whenBacktraceIsEnabled()
@@ -315,6 +315,15 @@ caused by: caused by 2
 #11 {main}
 EOI;
 
-        $this->assertEquals($expected, $wholeTrace);
+        $this->assertEquals($this->handleNewerPHPUnitTrace($expected), $wholeTrace);
+    }
+
+    private function handleNewerPHPUnitTrace($input)
+    {
+        if (version_compare(Version::id(), '9.0', '>=')) {
+            $input = str_replace('TestRunner->doRun', 'TestRunner->run', $input);
+        }
+
+        return $input;
     }
 }
