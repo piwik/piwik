@@ -77,7 +77,7 @@ class Sms extends ReportRenderer
                      return preg_replace_callback(
                          $floatRegex,
                          function ($matches) {
-                             return round($matches[0]);
+                             return round((float) $matches[0]);
                          },
                          $value
                      );
