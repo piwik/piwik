@@ -106,7 +106,7 @@ class TestCommandWithException extends ConsoleCommand
 }
 
 /**
- * @group ConsoleTest3
+ * @group ConsoleTest
  */
 class ConsoleTest extends ConsoleCommandTestCase
 {
@@ -166,7 +166,6 @@ class ConsoleTest extends ConsoleCommandTestCase
         $output = $this->normalizeOutput($output);
 
         $expected = <<<END
-#!/usr/bin/env php
 PHP Fatal error:  Allowed memory size of X bytes exhausted (tried to allocate X bytes) in /tests/PHPUnit/System/ConsoleTest.php on line 85
 
 Fatal error: Allowed memory size of X bytes exhausted (tried to allocate X bytes) in /tests/PHPUnit/System/ConsoleTest.php on line 85
@@ -183,6 +182,10 @@ Matomo encountered an error: Allowed memory size of X bytes exhausted (tried to 
 ))
 END;
 
+        if (PHP_MAJOR_VERSION < 8) {
+            $expected = "#!/usr/bin/env php\n" . $expected;
+        }
+
         $this->assertEquals($expected, $output);
     }
 
@@ -196,7 +199,6 @@ END;
         $output = $this->normalizeOutput($output);
 
         $expected = <<<END
-#!/usr/bin/env php
 *** IN SAFEMODE ***
 
 
@@ -211,6 +213,11 @@ test-command-with-exception
 
 
 END;
+
+        if (PHP_MAJOR_VERSION < 8) {
+            $expected = "#!/usr/bin/env php\n" . $expected;
+        }
+
         $this->assertEquals($expected, $output);
     }
 
