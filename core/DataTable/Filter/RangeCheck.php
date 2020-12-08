@@ -51,9 +51,9 @@ class RangeCheck extends BaseFilter
             if ($value === false) {
                 $value = $row->getMetadata($this->columnToFilter);
                 if ($value !== false) {
-                    if ($value < (float) self::$minimumValue) {
+                    if ((float) $value < (float) self::$minimumValue) {
                         $row->setMetadata($this->columnToFilter, self::$minimumValue);
-                    } elseif ($value > (float) self::$maximumValue) {
+                    } elseif ((float) $value > (float) self::$maximumValue) {
                         $row->setMetadata($this->columnToFilter, self::$maximumValue);
                     }
                 }
@@ -61,9 +61,9 @@ class RangeCheck extends BaseFilter
             }
 
             if ($value !== false) {
-                if ($value < (float) self::$minimumValue) {
+                if ((float) $value < (float) self::$minimumValue) {
                     $row->setColumn($this->columnToFilter, self::$minimumValue);
-                } elseif ($value > (float) self::$maximumValue) {
+                } elseif ((float) $value > (float) self::$maximumValue) {
                     $row->setColumn($this->columnToFilter, self::$maximumValue);
                 }
             }
