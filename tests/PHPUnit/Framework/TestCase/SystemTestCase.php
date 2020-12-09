@@ -840,6 +840,15 @@ abstract class SystemTestCase extends TestCase
     {
         return array();
     }
+
+    public function hasDependencies(): bool
+    {
+        if (method_exists($this, 'requires')) {
+            return count($this->requires()) > 0;
+        }
+
+        return parent::hasDependencies();
+    }
 }
 
 SystemTestCase::$fixture = new \Piwik\Tests\Framework\Fixture();
