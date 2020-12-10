@@ -46,8 +46,8 @@ class DbTest extends IntegrationTestCase
                       PRIMARY KEY (testid)
                   )");
 
-        Db::query("INSERT INTO `$table` (testvalue) VALUES (?)", ['a' => 4]);
-        Db::query("INSERT INTO `$table` (testvalue) VALUES (?)", ['b' => null]);
+        Db::query("INSERT INTO `$table` (testvalue) VALUES (?)", [4]);
+        Db::query("INSERT INTO `$table` (testvalue) VALUES (?)", [null]);
 
         $values = Db::fetchAll("SELECT testid, testvalue FROM `$table`");
 
