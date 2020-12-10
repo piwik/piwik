@@ -240,7 +240,6 @@ class UsersManagerTest extends IntegrationTestCase
         // check that the date registered is correct
         $this->assertTrue($time <= strtotime($user['date_registered']) && strtotime($user['date_registered']) <= time(),
             "the date_registered " . strtotime($user['date_registered']) . " is different from the time() " . time());
-        $this->assertTrue($user['date_registered'] <= time());
 
         // check that password and token are properly set
         $this->assertEquals(60, strlen($user['password']));
