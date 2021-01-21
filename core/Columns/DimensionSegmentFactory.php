@@ -114,6 +114,8 @@ class DimensionSegmentFactory
             $segment->setRequiresRegisteredUser(true);
         }
 
+        $segment->setRequiresProfilableData($dimension->isRequiresProfilableData());
+
         return $segment;
     }
 

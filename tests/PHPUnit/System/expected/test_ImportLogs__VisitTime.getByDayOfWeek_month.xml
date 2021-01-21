@@ -9,6 +9,7 @@
 		<sum_visit_length>0</sum_visit_length>
 		<bounce_count>2</bounce_count>
 		<nb_visits_converted>2</nb_visits_converted>
+		<nb_profilable>0</nb_profilable>
 		<day_of_week>1</day_of_week>
 	</row>
 	<row>
@@ -25,6 +26,7 @@
 		<sum_visit_length>4</sum_visit_length>
 		<bounce_count>4</bounce_count>
 		<nb_visits_converted>6</nb_visits_converted>
+		<nb_profilable>4</nb_profilable>
 		<day_of_week>3</day_of_week>
 	</row>
 	<row>
@@ -36,6 +38,7 @@
 		<sum_visit_length>242</sum_visit_length>
 		<bounce_count>12</bounce_count>
 		<nb_visits_converted>13</nb_visits_converted>
+		<nb_profilable>0</nb_profilable>
 		<day_of_week>4</day_of_week>
 	</row>
 	<row>
@@ -47,6 +50,7 @@
 		<sum_visit_length>0</sum_visit_length>
 		<bounce_count>8</bounce_count>
 		<nb_visits_converted>8</nb_visits_converted>
+		<nb_profilable>0</nb_profilable>
 		<day_of_week>5</day_of_week>
 	</row>
 	<row>
@@ -58,6 +62,7 @@
 		<sum_visit_length>305</sum_visit_length>
 		<bounce_count>9</bounce_count>
 		<nb_visits_converted>9</nb_visits_converted>
+		<nb_profilable>1</nb_profilable>
 		<day_of_week>6</day_of_week>
 	</row>
 	<row>
@@ -69,6 +74,7 @@
 		<sum_visit_length>0</sum_visit_length>
 		<bounce_count>3</bounce_count>
 		<nb_visits_converted>1</nb_visits_converted>
+		<nb_profilable>0</nb_profilable>
 		<day_of_week>7</day_of_week>
 	</row>
 </result>

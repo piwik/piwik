@@ -4,8 +4,8 @@ Site 1,11,43,43,$0,0,100%,100%,100%,0%,0%,0,$0,0,0
 Site 2,1,3,3,$0,0,100%,100%,100%,0%,0%,0,$0,0,0
 
 Visits Summary
-nb_uniq_visitors,nb_visits,nb_actions,max_actions,nb_actions_per_visit,avg_time_on_site,bounce_rate
-2,11,43,5,3.9,00:10:55,27%
+nb_uniq_visitors,nb_visits,nb_actions,max_actions,nb_profilable,nb_actions_per_visit,avg_time_on_site,bounce_rate
+2,11,43,5,11,3.9,00:10:55,27%
 
 Country
 label,nb_visits,nb_actions,nb_actions_per_visit,avg_time_on_site,bounce_rate,revenue

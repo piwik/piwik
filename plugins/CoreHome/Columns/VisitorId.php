@@ -38,4 +38,9 @@ class VisitorId extends VisitDimension
         $metric->setName('nb_uniq_visitors');
         $metricsList->addMetric($metric);
     }
+
+    public function isRequiresProfilableData()
+    {
+        return true;
+    }
 }

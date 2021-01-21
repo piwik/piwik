@@ -81,6 +81,7 @@
 			<nb_users>Users</nb_users>
 			<nb_actions>Actions</nb_actions>
 			<max_actions>Maximum actions in one visit</max_actions>
+			<nb_profilable>nb_profilable</nb_profilable>
 		</metrics>
 		<metricsDocumentation>
 			<nb_uniq_visitors>The number of unduplicated visitors coming to your website. Every user is only counted once, even if they visit the website multiple times a day.</nb_uniq_visitors>
@@ -2551,6 +2552,7 @@
 			<nb_users>Users</nb_users>
 			<nb_actions>Actions</nb_actions>
 			<max_actions>Maximum actions in one visit</max_actions>
+			<nb_profilable>nb_profilable</nb_profilable>
 			<nb_visits_returning>Returning Visits</nb_visits_returning>
 			<nb_actions_returning>Actions by Returning Visits</nb_actions_returning>
 			<nb_uniq_visitors_returning>Unique returning visitors</nb_uniq_visitors_returning>

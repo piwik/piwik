@@ -20,4 +20,9 @@ class VisitorDaysSinceLast extends VisitDimension
     protected $columnName = 'visitor_seconds_since_last';
     protected $sqlSegment = 'FLOOR(log_visit.visitor_seconds_since_last / 86400)';
     protected $segmentName = 'daysSinceLastVisit';
+
+    public function isRequiresProfilableData()
+    {
+        return true;
+    }
 }

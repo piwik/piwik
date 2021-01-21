@@ -19,4 +19,9 @@ class VisitorDaysSinceOrder extends VisitDimension
     protected $columnName = 'visitor_seconds_since_order';
     protected $sqlSegment = 'FLOOR(log_visit.visitor_seconds_since_order / 86400)';
     protected $segmentName = 'daysSinceLastEcommerceOrder';
+
+    public function isRequiresProfilableData()
+    {
+        return true;
+    }
 }

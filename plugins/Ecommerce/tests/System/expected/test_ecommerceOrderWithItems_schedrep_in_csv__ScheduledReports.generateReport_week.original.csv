@@ -4,8 +4,8 @@ Piwik test,5,16,16,"$13,361.11",5,4,"$13,351.11",100%,100%,100%,100%,100%,100%,1
 Piwik test,2,1,1,$250,1,0,$0,100%,100%,100%,100%,100%,0,0
 
 Visits Summary
-nb_uniq_visitors,nb_visits,nb_actions,max_actions,nb_actions_per_visit,avg_time_on_site,bounce_rate
-1,5,16,6,3.2,00:22:49,20%
+nb_uniq_visitors,nb_visits,nb_actions,max_actions,nb_profilable,nb_actions_per_visit,avg_time_on_site,bounce_rate
+1,5,16,6,5,3.2,00:22:49,20%
 
 Country
 label,nb_visits,nb_actions,revenue,nb_actions_per_visit,avg_time_on_site,bounce_rate

@@ -9,6 +9,7 @@
 namespace Piwik\API;
 
 use Exception;
+use Matomo\Cache\Transient;
 use Piwik\Access;
 use Piwik\Cache;
 use Piwik\Common;
@@ -18,9 +19,11 @@ use Piwik\Context;
 use Piwik\DataTable;
 use Piwik\Exception\PluginDeactivatedException;
 use Piwik\IP;
+use Piwik\Period;
 use Piwik\Piwik;
 use Piwik\Plugin\Manager as PluginManager;
 use Piwik\Plugins\CoreHome\LoginAllowlist;
+use Piwik\Segment;
 use Piwik\SettingsServer;
 use Piwik\Url;
 use Piwik\UrlHelper;
@@ -700,5 +703,64 @@ class Request
         }
 
         return $shouldDisable;
+    }
+
+    public static function isCurrentPeriodProfilable($idSite = null, $period = null, $date = null, $segment = null)
+    {
+        if (self::isProfilableCheckDisabledInTests()) {
+            return true;
+        }
+
+        $idSite = $idSite ?: Common::getRequestVar('idSite', $default = false);
+        $period = $period ?: Common::getRequestVar('period', $default = false);
+        $date = $date ?: Common::getRequestVar('date', $default = false);
+        $segment = $segment ?: Request::getRawSegmentFromRequest();
+
+        if ($idSite === false
+            || $period === false
+            || $date === false
+            || !is_numeric($idSite)
+            || Period::isMultiplePeriod($date, $period)
+        ) {
+            return true;
+        }
+
+        if ($period == 'day') {
+            $period = 'week';
+        }
+
+        $transientCache = StaticContainer::get(Transient::class);
+
+        $segmentObj = new Segment($segment, [$idSite]);
+
+        $cacheKey = "VisitsSummary.isProfilable.$idSite.$period.$date." . $segmentObj->getHash();
+        if (!$transientCache->contains($cacheKey)) {
+            $isProfilable = Request::processRequest('VisitsSummary.isProfilable', [
+                'idSite' => $idSite,
+                'period' => $period,
+                'date' => $date,
+                'segment' => $segment,
+            ]);
+
+            $transientCache->save($cacheKey, $isProfilable);
+        } else {
+            $isProfilable = (bool)$transientCache->fetch($cacheKey);
+        }
+
+        return $isProfilable;
+    }
+
+    private static function isProfilableCheckDisabledInTests()
+    {
+        if (!defined('PIWIK_TEST_MODE')) {
+            return false;
+        }
+
+        try {
+            $isDisabled = (bool) StaticContainer::get('tests.isProfilableCheckDisabled');
+            return $isDisabled;
+        } catch (\Exception $ex) {
+            return false;
+        }
     }
 }

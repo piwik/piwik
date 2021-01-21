@@ -522,7 +522,7 @@ class Archive implements ArchiveQuery
      * query archive tables for IDs w/o launching archiving, or launch archiving and
      * get the idarchive from ArchiveProcessor instances.
      *
-     * @param string $archiveNames
+     * @param string[] $archiveNames
      * @return array
      */
     private function getArchiveIds($archiveNames)

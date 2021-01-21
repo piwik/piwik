@@ -14,6 +14,7 @@
 			<nb_visits>Visits</nb_visits>
 			<nb_actions>Actions</nb_actions>
 			<max_actions>Maximum actions in one visit</max_actions>
+			<nb_profilable>nb_profilable</nb_profilable>
 		</metrics>
 		<metricsDocumentation>
 			<nb_uniq_visitors>The number of unduplicated visitors coming to your website. Every user is only counted once, even if they visit the website multiple times a day.</nb_uniq_visitors>
@@ -37,6 +38,7 @@
 		<nb_visits>Visits</nb_visits>
 		<nb_actions>Actions</nb_actions>
 		<max_actions>Maximum actions in one visit</max_actions>
+		<nb_profilable>Nb_profilable</nb_profilable>
 		<bounce_rate>Bounce Rate</bounce_rate>
 		<nb_actions_per_visit>Actions per Visit</nb_actions_per_visit>
 		<avg_time_on_site>Avg. Visit Duration (in seconds)</avg_time_on_site>
@@ -47,6 +49,7 @@
 			<nb_visits>2</nb_visits>
 			<nb_actions>2</nb_actions>
 			<max_actions>1</max_actions>
+			<nb_profilable>2</nb_profilable>
 			<nb_actions_per_visit>1</nb_actions_per_visit>
 			<avg_time_on_site>00:00:00</avg_time_on_site>
 			<bounce_rate>100%</bounce_rate>
@@ -56,6 +59,7 @@
 			<nb_visits>1</nb_visits>
 			<nb_actions>1</nb_actions>
 			<max_actions>1</max_actions>
+			<nb_profilable>1</nb_profilable>
 			<nb_actions_per_visit>1</nb_actions_per_visit>
 			<avg_time_on_site>00:00:00</avg_time_on_site>
 			<bounce_rate>100%</bounce_rate>
@@ -65,6 +69,7 @@
 			<nb_visits>1</nb_visits>
 			<nb_actions>5</nb_actions>
 			<max_actions>5</max_actions>
+			<nb_profilable>1</nb_profilable>
 			<nb_actions_per_visit>5</nb_actions_per_visit>
 			<avg_time_on_site>00:15:01</avg_time_on_site>
 			<bounce_rate>0%</bounce_rate>
@@ -74,6 +79,7 @@
 			<nb_visits>1</nb_visits>
 			<nb_actions>5</nb_actions>
 			<max_actions>5</max_actions>
+			<nb_profilable>1</nb_profilable>
 			<nb_actions_per_visit>5</nb_actions_per_visit>
 			<avg_time_on_site>00:15:01</avg_time_on_site>
 			<bounce_rate>0%</bounce_rate>
@@ -83,6 +89,7 @@
 			<nb_visits>1</nb_visits>
 			<nb_actions>5</nb_actions>
 			<max_actions>5</max_actions>
+			<nb_profilable>1</nb_profilable>
 			<nb_actions_per_visit>5</nb_actions_per_visit>
 			<avg_time_on_site>00:15:01</avg_time_on_site>
 			<bounce_rate>0%</bounce_rate>
@@ -92,6 +99,7 @@
 			<nb_visits>1</nb_visits>
 			<nb_actions>5</nb_actions>
 			<max_actions>5</max_actions>
+			<nb_profilable>1</nb_profilable>
 			<nb_actions_per_visit>5</nb_actions_per_visit>
 			<avg_time_on_site>00:15:01</avg_time_on_site>
 			<bounce_rate>0%</bounce_rate>
@@ -101,6 +109,7 @@
 			<nb_visits>1</nb_visits>
 			<nb_actions>5</nb_actions>
 			<max_actions>5</max_actions>
+			<nb_profilable>1</nb_profilable>
 			<nb_actions_per_visit>5</nb_actions_per_visit>
 			<avg_time_on_site>00:15:01</avg_time_on_site>
 			<bounce_rate>0%</bounce_rate>

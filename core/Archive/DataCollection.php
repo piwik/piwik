@@ -112,6 +112,7 @@ class DataCollection
 
         if ($defaultRow === null) {
             $defaultRow = array_fill_keys($dataNames, 0);
+            unset($defaultRow['nb_profilable']); // for this special metric, we want to know when it was never present
         }
 
         $this->sitesId = $sitesId;

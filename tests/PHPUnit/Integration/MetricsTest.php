@@ -30,6 +30,7 @@ class MetricsTest extends IntegrationTestCase
             5 => 'sum_visit_length',
             6 => 'bounce_count',
             7 => 'nb_visits_converted',
+            44 => 'nb_profilable',
         );
         $this->assertEquals($expectedNames, $names);
     }
@@ -82,6 +83,7 @@ class MetricsTest extends IntegrationTestCase
             'nb_impressions' => 41,
             'nb_interactions' => 42,
             'nb_uniq_fingerprints' => 43,
+            'nb_profilable' => 44,
         );
         $this->assertEquals($expectedMapping, $mapping);
     }

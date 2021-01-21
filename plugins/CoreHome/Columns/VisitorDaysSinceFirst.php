@@ -34,4 +34,9 @@ class VisitorDaysSinceFirst extends VisitDimension
         });
         $segmentsList->addSegment($dimensionSegmentFactory->createSegment($segment));
     }
+
+    public function isRequiresProfilableData()
+    {
+        return true;
+    }
 }

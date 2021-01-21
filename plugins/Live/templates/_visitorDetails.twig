@@ -1,4 +1,4 @@
-<strong class="visitor-log-datetime visitorLogTooltip" title="{% if visitInfo.getColumn('visitorType')=='new' %}{{ 'General_NewVisitor'|translate }}{% else %}{{ 'Live_VisitorsLastVisit'|translate(visitInfo.getColumn('daysSinceLastVisit')) }}{% endif %}">
+<strong class="visitor-log-datetime visitorLogTooltip" title="{% if visitInfo.getColumn('visitorType')=='new' %}{{ 'General_NewVisitor'|translate }}{% elseif visitInfo.getColumn('visitorType') is not empty %}{{ 'Live_VisitorsLastVisit'|translate(visitInfo.getColumn('daysSinceLastVisit')) }}{% endif %}">
     {{ visitInfo.getColumn('serverDatePrettyFirstAction') }}
     {% if isWidget %}<br/>{% else %}-{% endif %} {{ visitInfo.getColumn('serverTimePrettyFirstAction') }}</strong>
 {% if visitInfo.getColumn('visitIp') is not empty %}

@@ -5,78 +5,91 @@
 		<category>Visitors</category>
 		<name>Actions In Visit</name>
 		<segment>actions</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Days since first visit</name>
 		<segment>daysSinceFirstVisit</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Days since last Ecommerce order</name>
 		<segment>daysSinceLastEcommerceOrder</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Days since last visit</name>
 		<segment>daysSinceLastVisit</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Events</name>
 		<segment>events</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Local time - minute (Start of visit)</name>
 		<segment>visitLocalMinute</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Number of Interactions</name>
 		<segment>interactions</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Number of Internal Searches</name>
 		<segment>searches</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Number of visits</name>
 		<segment>visitCount</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Seconds since first visit</name>
 		<segment>secondsSinceFirstVisit</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Seconds since last Ecommerce order</name>
 		<segment>secondsSinceLastEcommerceOrder</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Seconds since last visit</name>
 		<segment>secondsSinceLastVisit</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
 		<name>Visit Duration (in seconds)</name>
 		<segment>visitDuration</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
@@ -84,18 +97,21 @@
 		<name>Visitor IP</name>
 		<segment>visitIp</segment>
 		<permission>1</permission>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Browser</name>
 		<segment>browserName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Browser code</name>
 		<segment>browserCode</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -103,30 +119,35 @@
 		<name>Browser engine</name>
 		<segment>browserEngine</segment>
 		<suggestedValuesCallback>\DeviceDetector\Parser\Client\Browser\Engine::getAvailableEngines</suggestedValuesCallback>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Browser version</name>
 		<segment>browserVersion</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Device brand</name>
 		<segment>deviceBrand</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Device model</name>
 		<segment>deviceModel</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Device type</name>
 		<segment>deviceType</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -134,138 +155,161 @@
 		<name>Fingerprint</name>
 		<segment>fingerprint</segment>
 		<permission>1</permission>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Local time - hour (Start of visit)</name>
 		<segment>visitLocalHour</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>MyName1</name>
 		<segment>dimension1</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>MyName2</name>
 		<segment>dimension2</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>MyName6</name>
 		<segment>dimension6</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Operating system</name>
 		<segment>operatingSystemName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Operating system code</name>
 		<segment>operatingSystemCode</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Operating system version</name>
 		<segment>operatingSystemVersion</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Profilable</name>
 		<segment>profilable</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Resolution</name>
 		<segment>resolution</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - date (Time of last action)</name>
 		<segment>visitEndServerDate</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - day of month (Time of last action)</name>
 		<segment>visitEndServerDayOfMonth</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - day of week (Time of last action)</name>
 		<segment>visitEndServerDayOfWeek</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - day of year (Time of last action)</name>
 		<segment>visitEndServerDayOfYear</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - hour (Start of visit)</name>
 		<segment>visitStartServerHour</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - hour (Time of last action)</name>
 		<segment>visitServerHour</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - minute (Start of visit)</name>
 		<segment>visitStartServerMinute</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - minute (Time of last action)</name>
 		<segment>visitEndServerMinute</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - month (Time of last action)</name>
 		<segment>visitEndServerMonth</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - quarter (Time of last action)</name>
 		<segment>visitEndServerQuarter</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - second (Time of last action)</name>
 		<segment>visitEndServerSecond</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - week of year (Time of last action)</name>
 		<segment>visitEndServerWeekOfYear</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Server time - year (Time of last action)</name>
 		<segment>visitEndServerYear</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -273,12 +317,14 @@
 		<name>User ID</name>
 		<segment>userId</segment>
 		<permission>1</permission>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Visit Ecommerce status at the end of the visit</name>
 		<segment>visitEcommerceStatus</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -286,24 +332,28 @@
 		<name>Visit ID</name>
 		<segment>visitId</segment>
 		<permission>1</permission>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Visit converted a specific Goal Id</name>
 		<segment>visitConvertedGoalId</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Visit converted at least one Goal</name>
 		<segment>visitConverted</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visitors</category>
 		<name>Visit type</name>
 		<segment>visitorType</segment>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -311,54 +361,63 @@
 		<name>Visitor ID</name>
 		<segment>visitorId</segment>
 		<permission>1</permission>
+		<requiresProfilableData>1</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>City</name>
 		<segment>city</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>Continent</name>
 		<segment>continentCode</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>Country</name>
 		<segment>countryName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>Country code</name>
 		<segment>countryCode</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>Language</name>
 		<segment>languageCode</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>Latitude</name>
 		<segment>latitude</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>Longitude</name>
 		<segment>longitude</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Visit Location</category>
 		<name>Region</name>
 		<segment>regionCode</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -372,36 +431,42 @@
 			<row>customVariableName4</row>
 			<row>customVariableName5</row>
 		</unionOfSegments>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 1 (scope visit)</name>
 		<segment>customVariableName1</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 2 (scope visit)</name>
 		<segment>customVariableName2</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 3 (scope visit)</name>
 		<segment>customVariableName3</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 4 (scope visit)</name>
 		<segment>customVariableName4</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 5 (scope visit)</name>
 		<segment>customVariableName5</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -415,36 +480,42 @@
 			<row>customVariablePageName4</row>
 			<row>customVariablePageName5</row>
 		</unionOfSegments>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 1 (scope page)</name>
 		<segment>customVariablePageName1</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 2 (scope page)</name>
 		<segment>customVariablePageName2</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 3 (scope page)</name>
 		<segment>customVariablePageName3</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 4 (scope page)</name>
 		<segment>customVariablePageName4</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable name 5 (scope page)</name>
 		<segment>customVariablePageName5</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -458,36 +529,42 @@
 			<row>customVariablePageValue4</row>
 			<row>customVariablePageValue5</row>
 		</unionOfSegments>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 1 (scope page)</name>
 		<segment>customVariablePageValue1</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 2 (scope page)</name>
 		<segment>customVariablePageValue2</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 3 (scope page)</name>
 		<segment>customVariablePageValue3</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 4 (scope page)</name>
 		<segment>customVariablePageValue4</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 5 (scope page)</name>
 		<segment>customVariablePageValue5</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -501,48 +578,56 @@
 			<row>customVariableValue4</row>
 			<row>customVariableValue5</row>
 		</unionOfSegments>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 1 (scope visit)</name>
 		<segment>customVariableValue1</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 2 (scope visit)</name>
 		<segment>customVariableValue2</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 3 (scope visit)</name>
 		<segment>customVariableValue3</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 4 (scope visit)</name>
 		<segment>customVariableValue4</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Custom Variables</category>
 		<name>Custom Variable value 5 (scope visit)</name>
 		<segment>customVariableValue5</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Behaviour</category>
 		<name>Bandwidth</name>
 		<segment>bandwidth</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Action Type</name>
 		<segment>actionType</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -555,192 +640,224 @@
 			<row>outlinkUrl</row>
 			<row>eventUrl</row>
 		</unionOfSegments>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Category (Site Search)</name>
 		<segment>siteSearchCategory</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Clicked Outlink</name>
 		<segment>outlinkUrl</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Content Interaction</name>
 		<segment>contentInteraction</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Content Name</name>
 		<segment>contentName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Content Piece</name>
 		<segment>contentPiece</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Content Target</name>
 		<segment>contentTarget</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Download URL</name>
 		<segment>downloadUrl</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Entry Page URL</name>
 		<segment>entryPageUrl</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Entry Page title</name>
 		<segment>entryPageTitle</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Exit Page Title</name>
 		<segment>exitPageTitle</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Exit Page URL</name>
 		<segment>exitPageUrl</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Keyword (Site Search)</name>
 		<segment>siteSearchKeyword</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Keyword count (Site Search)</name>
 		<segment>siteSearchCount</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>MyName3</name>
 		<segment>dimension3</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>MyName5</name>
 		<segment>dimension5</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Page Title</name>
 		<segment>pageTitle</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Page URL</name>
 		<segment>pageUrl</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Server time - hour</name>
 		<segment>actionServerHour</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Behaviour</category>
 		<name>Server time - minute</name>
 		<segment>actionServerMinute</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Events</category>
 		<name>Event value</name>
 		<segment>eventValue</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Events</category>
 		<name>Event Action</name>
 		<segment>eventAction</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Events</category>
 		<name>Event Category</name>
 		<segment>eventCategory</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Events</category>
 		<name>Event Name</name>
 		<segment>eventName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Events</category>
 		<name>Event URL</name>
 		<segment>eventUrl</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Acquisition</category>
 		<name>Channel Type</name>
 		<segment>referrerType</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Acquisition</category>
 		<name>Keyword</name>
 		<segment>referrerKeyword</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Acquisition</category>
 		<name>Referrer Name</name>
 		<segment>referrerName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Acquisition</category>
 		<name>Referrer URL</name>
 		<segment>referrerUrl</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Ecommerce</category>
 		<name>Order ID</name>
 		<segment>orderId</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Ecommerce</category>
 		<name>Product Price</name>
 		<segment>productPrice</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>metric</type>
 		<category>Ecommerce</category>
 		<name>Viewed Product Price</name>
 		<segment>productViewPrice</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -754,18 +871,21 @@
 			<row>productCategory4</row>
 			<row>productCategory5</row>
 		</unionOfSegments>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Ecommerce</category>
 		<name>Product Name</name>
 		<segment>productName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Ecommerce</category>
 		<name>Product SKU</name>
 		<segment>productSku</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
@@ -779,17 +899,20 @@
 			<row>productViewCategory4</row>
 			<row>productViewCategory5</row>
 		</unionOfSegments>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Ecommerce</category>
 		<name>Viewed Product Name</name>
 		<segment>productViewName</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 	<row>
 		<type>dimension</type>
 		<category>Ecommerce</category>
 		<name>Viewed Product SKU</name>
 		<segment>productViewSku</segment>
+		<requiresProfilableData>0</requiresProfilableData>
 	</row>
 </result>

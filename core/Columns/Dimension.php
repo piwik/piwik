@@ -193,6 +193,11 @@ abstract class Dimension
     protected $metricId = '';
 
     /**
+     * @var bool
+     */
+    private $isRequiresProfilableData = false;
+
+    /**
      * To be implemented when a column references another column
      * @return Join|null
      * @api since Piwik 3.2.0
@@ -857,4 +862,17 @@ abstract class Dimension
         return $this->columnType;
     }
 
+    /**
+     * Returns true if this dimension requires profilable visit data in order to be useful.
+     * Dimensions that require profilable data are hidden (as are their associated reports)
+     * when we find that a specific period contains a majority of un-profilable tracked data.
+     *
+     * Derived classes should set the $isRequiresProfilableData member if they are not profilable.
+     *
+     * @return mixed
+     */
+    public function isRequiresProfilableData()
+    {
+        return $this->isRequiresProfilableData;
+    }
 }

@@ -40,7 +40,12 @@
             }
 
             if (!limitPromise) {
-                var params = {method: 'API.getSegmentsMetadata',filter_limit: '-1', '_hideImplementationData': 0};
+                var params = {
+                    method: 'API.getSegmentsMetadata',
+                    filter_limit: '-1',
+                    '_hideImplementationData': 0,
+                    '_hideSegmentsIfDataNotProfilable': 1
+                };
 
                 if (siteId === 'all' || !siteId) {
                     params.idSites = 'all';

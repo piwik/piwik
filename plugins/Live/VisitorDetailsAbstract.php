@@ -21,6 +21,11 @@ use Piwik\Db;
 abstract class VisitorDetailsAbstract
 {
     /**
+     * @var bool
+     */
+    protected $isDataProfilable;
+
+    /**
      * The visitor raw data (will be automatically set)
      *
      * @var array
@@ -36,6 +41,15 @@ abstract class VisitorDetailsAbstract
     public function setDetails($details)
     {
         $this->details = $details;
+    }
+
+    /**
+     * @ignore
+     * @param bool $isProfilable
+     */
+    public function setDataProfilable($isProfilable)
+    {
+        $this->isDataProfilable = $isProfilable;
     }
 
     /**

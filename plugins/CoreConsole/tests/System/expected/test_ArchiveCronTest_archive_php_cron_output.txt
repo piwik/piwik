@@ -10,98 +10,55 @@ try 'php archive.php --url=http://your.piwik/path'
 -------------------------------------------------------
 
 
-INFO [2020-09-19 17:11:11] 10540  ---------------------------
-INFO [2020-09-19 17:11:11] 10540  INIT
-INFO [2020-09-19 17:11:11] 10540  Running Matomo 4.0.0-b2 as Super User
-INFO [2020-09-19 17:11:11] 10540  ---------------------------
-INFO [2020-09-19 17:11:11] 10540  NOTES
-INFO [2020-09-19 17:11:11] 10540  - If you execute this script at least once per hour (or more often) in a crontab, you may disable 'Browser trigger archiving' in Matomo UI > Settings > General Settings.
-INFO [2020-09-19 17:11:11] 10540    See the doc at: https://matomo.org/docs/setup-auto-archiving/
-INFO [2020-09-19 17:11:11] 10540  - Async process archiving supported, using CliMulti.
-INFO [2020-09-19 17:11:11] 10540  - Reports for today will be processed at most every 900 seconds. You can change this value in Matomo UI > Settings > General Settings.
-INFO [2020-09-19 17:11:12] 10540  ---------------------------
-INFO [2020-09-19 17:11:12] 10540  START
-INFO [2020-09-19 17:11:12] 10540  Starting Matomo reports archiving...
-INFO [2020-09-19 17:11:12] 10540  Start processing archives for site 1.
-INFO [2020-09-19 17:11:12] 10540  Archived website id 1, period = day, date = 2007-04-05, segment = '', plugin = ExamplePlugin, 1 visits found. Time elapsed: 0.524s
-INFO [2020-09-19 17:11:13] 10540  Archived website id 1, period = week, date = 2007-04-02, segment = '', plugin = ExamplePlugin, 1 visits found. Time elapsed: 0.536s
-INFO [2020-09-19 17:11:13] 10540  Archived website id 1, period = month, date = 2007-04-01, segment = '', plugin = ExamplePlugin, 1 visits found. Time elapsed: 0.537s
-INFO [2020-09-19 17:11:14] 10540  Archived website id 1, period = year, date = 2007-01-01, segment = '', plugin = ExamplePlugin, 1 visits found. Time elapsed: 0.533s
-INFO [2020-09-19 17:11:14] 10540  Checking for queued invalidations...
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2014-03-13 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2014-03-12 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2012-09-30 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2012-08-19 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2012-08-15 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2012-08-11 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2012-08-10 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Will invalidate archived reports for 2012-08-09 for following websites ids: 1
-INFO [2020-09-19 17:11:14] 10540    Segment "browserCode==IE" was created or changed recently and will therefore archive today (for site ID = 1)
-INFO [2020-09-19 17:11:14] 10540    Segment "visitCount<=5;pageUrl=@/blog/;countryCode==jp" was created or changed recently and will therefore archive today (for site ID = 1)
-INFO [2020-09-19 17:11:14] 10540    Segment "visitCount<=5;pageUrl=@%2Fblog%2F;countryCode==jp" was created or changed recently and will therefore archive today (for site ID = 1)
-INFO [2020-09-19 17:11:14] 10540  Done invalidating
-INFO [2020-09-19 17:11:17] 10540  Archived website id 1, period = day, date = 2014-03-13, segment = '', 11 visits found. Time elapsed: 1.033s
-INFO [2020-09-19 17:11:17] 10540  Archived website id 1, period = day, date = 2014-03-12, segment = '', 1 visits found. Time elapsed: 1.033s
-INFO [2020-09-19 17:11:17] 10540  Archived website id 1, period = day, date = 2012-09-30, segment = '', 1 visits found. Time elapsed: 1.033s
-INFO [2020-09-19 17:11:18] 10540  Archived website id 1, period = week, date = 2014-03-10, segment = '', 12 visits found. Time elapsed: 1.610s
-INFO [2020-09-19 17:11:18] 10540  Archived website id 1, period = week, date = 2012-09-24, segment = '', 1 visits found. Time elapsed: 1.610s
-INFO [2020-09-19 17:11:18] 10540  Archived website id 1, period = day, date = 2012-08-19, segment = '', 1 visits found. Time elapsed: 1.610s
-INFO [2020-09-19 17:11:20] 10540  Archived website id 1, period = month, date = 2014-03-01, segment = '', 12 visits found. Time elapsed: 1.613s
-INFO [2020-09-19 17:11:20] 10540  Archived website id 1, period = month, date = 2012-09-01, segment = '', 1 visits found. Time elapsed: 1.613s
-INFO [2020-09-19 17:11:20] 10540  Archived website id 1, period = day, date = 2012-08-15, segment = '', 2 visits found. Time elapsed: 1.613s
-INFO [2020-09-19 17:11:22] 10540  Archived website id 1, period = year, date = 2014-01-01, segment = '', 12 visits found. Time elapsed: 2.161s
-INFO [2020-09-19 17:11:22] 10540  Archived website id 1, period = week, date = 2012-08-13, segment = '', 3 visits found. Time elapsed: 2.161s
-INFO [2020-09-19 17:11:22] 10540  Archived website id 1, period = day, date = 2012-08-11, segment = '', 11 visits found. Time elapsed: 2.161s
-INFO [2020-09-19 17:11:23] 10540  Archived website id 1, period = year, date = 2014-01-01, segment = 'visitCount%3C%3D5%3BpageUrl%3D%40%2Fblog%2F%3BcountryCode%3D%3Djp', 0 visits found. Time elapsed: 0.759s
-INFO [2020-09-19 17:11:23] 10540  Archived website id 1, period = day, date = 2012-08-10, segment = '', 8 visits found. Time elapsed: 1.053s
-INFO [2020-09-19 17:11:23] 10540  Archived website id 1, period = day, date = 2012-08-09, segment = '', 11 visits found. Time elapsed: 1.053s
-INFO [2020-09-19 17:11:26] 10540  Archived website id 1, period = year, date = 2014-01-01, segment = 'browserCode%3D%3DIE', 1 visits found. Time elapsed: 2.475s
-INFO [2020-09-19 17:11:26] 10540  Archived website id 1, period = week, date = 2012-08-06, segment = '', 30 visits found. Time elapsed: 2.475s
-INFO [2020-09-19 17:11:27] 10540  Archived website id 1, period = month, date = 2012-08-01, segment = '', 33 visits found. Time elapsed: 1.073s
-INFO [2020-09-19 17:11:28] 10540  Archived website id 1, period = year, date = 2012-01-01, segment = '', 34 visits found. Time elapsed: 1.056s
-INFO [2020-09-19 17:11:32] 10540  Archived website id 1, period = year, date = 2012-01-01, segment = 'visitCount%3C%3D5%3BpageUrl%3D%40%2Fblog%2F%3BcountryCode%3D%3Djp', 7 visits found. Time elapsed: 3.689s
-INFO [2020-09-19 17:11:35] 10540  Archived website id 1, period = year, date = 2012-01-01, segment = 'browserCode%3D%3DIE', 6 visits found. Time elapsed: 3.181s
-INFO [2020-09-19 17:11:35] 10540  Checking for queued invalidations...
-INFO [2020-09-19 17:11:35] 10540  Done invalidating
-INFO [2020-09-19 17:11:35] 10540  Finished archiving for site 1, 25 API requests, Time elapsed: 23.792s [1 / 3 done]
-INFO [2020-09-19 17:11:35] 10540  Start processing archives for site 2.
-INFO [2020-09-19 17:11:35] 10540  Checking for queued invalidations...
-INFO [2020-09-19 17:11:35] 10540    Will invalidate archived reports for 2012-08-15 for following websites ids: 2
-INFO [2020-09-19 17:11:35] 10540  Done invalidating
-INFO [2020-09-19 17:11:36] 10540  Archived website id 2, period = day, date = 2012-08-15, segment = '', 1 visits found. Time elapsed: 0.542s
-INFO [2020-09-19 17:11:37] 10540  Archived website id 2, period = week, date = 2012-08-13, segment = '', 1 visits found. Time elapsed: 0.795s
-INFO [2020-09-19 17:11:38] 10540  Archived website id 2, period = month, date = 2012-08-01, segment = '', 1 visits found. Time elapsed: 1.064s
-INFO [2020-09-19 17:11:39] 10540  Archived website id 2, period = year, date = 2012-01-01, segment = '', 1 visits found. Time elapsed: 1.067s
-INFO [2020-09-19 17:11:39] 10540  Checking for queued invalidations...
-INFO [2020-09-19 17:11:39] 10540  Done invalidating
-INFO [2020-09-19 17:11:39] 10540  Finished archiving for site 2, 4 API requests, Time elapsed: 3.619s [2 / 3 done]
-INFO [2020-09-19 17:11:39] 10540  Start processing archives for site 3.
-INFO [2020-09-19 17:11:39] 10540  Checking for queued invalidations...
-INFO [2020-09-19 17:11:39] 10540    Will invalidate archived reports for 2014-03-13 for following websites ids: 3
-INFO [2020-09-19 17:11:39] 10540    Will invalidate archived reports for 2014-03-12 for following websites ids: 3
-INFO [2020-09-19 17:11:39] 10540    Will invalidate archived reports for 2012-08-15 for following websites ids: 3
-INFO [2020-09-19 17:11:39] 10540  Done invalidating
-INFO [2020-09-19 17:11:40] 10540  Archived website id 3, period = day, date = 2014-03-13, segment = '', 11 visits found. Time elapsed: 1.027s
-INFO [2020-09-19 17:11:40] 10540  Archived website id 3, period = day, date = 2014-03-12, segment = '', 1 visits found. Time elapsed: 1.027s
-INFO [2020-09-19 17:11:40] 10540  Archived website id 3, period = day, date = 2012-08-15, segment = '', 3 visits found. Time elapsed: 1.027s
-INFO [2020-09-19 17:11:42] 10540  Archived website id 3, period = week, date = 2014-03-10, segment = '', 12 visits found. Time elapsed: 1.449s
-INFO [2020-09-19 17:11:42] 10540  Archived website id 3, period = week, date = 2012-08-13, segment = '', 3 visits found. Time elapsed: 1.449s
-INFO [2020-09-19 17:11:44] 10540  Archived website id 3, period = month, date = 2014-03-01, segment = '', 12 visits found. Time elapsed: 1.411s
-INFO [2020-09-19 17:11:44] 10540  Archived website id 3, period = month, date = 2012-08-01, segment = '', 3 visits found. Time elapsed: 1.952s
-INFO [2020-09-19 17:11:46] 10540  Archived website id 3, period = year, date = 2014-01-01, segment = '', 12 visits found. Time elapsed: 2.012s
-INFO [2020-09-19 17:11:46] 10540  Archived website id 3, period = year, date = 2012-01-01, segment = '', 3 visits found. Time elapsed: 2.012s
-INFO [2020-09-19 17:11:46] 10540  Checking for queued invalidations...
-INFO [2020-09-19 17:11:46] 10540  Done invalidating
-INFO [2020-09-19 17:11:46] 10540  Finished archiving for site 3, 9 API requests, Time elapsed: 6.651s [3 / 3 done]
-INFO [2020-09-19 17:11:46] 10540  Done archiving!
-INFO [2020-09-19 17:11:46] 10540  ---------------------------
-INFO [2020-09-19 17:11:46] 10540  SUMMARY
-INFO [2020-09-19 17:11:46] 10540  Processed 38 archives.
-INFO [2020-09-19 17:11:46] 10540  Total API requests: 38
-INFO [2020-09-19 17:11:46] 10540  done: 38 req, 34209 ms, no error
-INFO [2020-09-19 17:11:46] 10540  Time elapsed: 34.209s
-INFO [2020-09-19 17:11:46] 10540  ---------------------------
-INFO [2020-09-19 17:11:46] 10540  SCHEDULED TASKS
-INFO [2020-09-19 17:11:46] 10540  Starting Scheduled tasks...
-INFO [2020-09-19 17:11:46] 10540  done
-INFO [2020-09-19 17:11:46] 10540  ---------------------------
+INFO [2020-12-18 04:39:51] 13236  ---------------------------
+INFO [2020-12-18 04:39:51] 13236  INIT
+INFO [2020-12-18 04:39:51] 13236  Running Matomo 4.1.0-b1 as Super User
+INFO [2020-12-18 04:39:51] 13236  ---------------------------
+INFO [2020-12-18 04:39:51] 13236  NOTES
+INFO [2020-12-18 04:39:51] 13236  - If you execute this script at least once per hour (or more often) in a crontab, you may disable 'Browser trigger archiving' in Matomo UI > Settings > General Settings.
+INFO [2020-12-18 04:39:51] 13236    See the doc at: https://matomo.org/docs/setup-auto-archiving/
+INFO [2020-12-18 04:39:51] 13236  - Async process archiving supported, using CliMulti.
+INFO [2020-12-18 04:39:51] 13236  - Reports for today will be processed at most every 900 seconds. You can change this value in Matomo UI > Settings > General Settings.
+INFO [2020-12-18 04:39:51] 13236  - Archiving was last executed without error 1s ago
+INFO [2020-12-18 04:39:51] 13236  ---------------------------
+INFO [2020-12-18 04:39:51] 13236  START
+INFO [2020-12-18 04:39:51] 13236  Starting Matomo reports archiving...
+INFO [2020-12-18 04:39:51] 13236  Start processing archives for site 1.
+INFO [2020-12-18 04:39:51] 13236    Will invalidate archived reports for today in site ID = 1's timezone (2020-12-18 00:00:00).
+INFO [2020-12-18 04:39:52] 13236  Archived website id 1, period = day, date = 2020-12-18, segment = '', 2 visits found. Time elapsed: 0.533s
+INFO [2020-12-18 04:39:53] 13236  Archived website id 1, period = day, date = 2020-12-18, segment = 'pageUrl%3D%40%25252F', 2 visits found. Time elapsed: 0.751s
+INFO [2020-12-18 04:39:53] 13236  Archived website id 1, period = day, date = 2020-12-18, segment = 'operatingSystemCode%3D%3DIOS', 2 visits found. Time elapsed: 1.030s
+INFO [2020-12-18 04:39:53] 13236  Archived website id 1, period = day, date = 2020-12-18, segment = 'visitCount%3C%3D5%3BpageUrl%3D%40%2Fblog%2F%3BcountryCode%3D%3Djp', 0 visits found. Time elapsed: 1.030s
+INFO [2020-12-18 04:39:53] 13236  Archived website id 1, period = day, date = 2020-12-18, segment = 'browserCode%3D%3DIE', 0 visits found. Time elapsed: 0.534s
+INFO [2020-12-18 04:39:54] 13236  Archived website id 1, period = week, date = 2020-12-14, segment = '', 2 visits found. Time elapsed: 0.802s
+INFO [2020-12-18 04:39:55] 13236  Archived website id 1, period = week, date = 2020-12-14, segment = 'pageUrl%3D%40%25252F', 2 visits found. Time elapsed: 1.310s
+INFO [2020-12-18 04:39:55] 13236  Archived website id 1, period = week, date = 2020-12-14, segment = 'operatingSystemCode%3D%3DIOS', 2 visits found. Time elapsed: 1.310s
+INFO [2020-12-18 04:39:55] 13236  Archived website id 1, period = week, date = 2020-12-14, segment = 'visitCount%3C%3D5%3BpageUrl%3D%40%2Fblog%2F%3BcountryCode%3D%3Djp', 0 visits found. Time elapsed: 1.310s
+INFO [2020-12-18 04:39:56] 13236  Archived website id 1, period = week, date = 2020-12-14, segment = 'browserCode%3D%3DIE', 0 visits found. Time elapsed: 0.533s
+INFO [2020-12-18 04:39:57] 13236  Archived website id 1, period = month, date = 2020-12-01, segment = '', 2 visits found. Time elapsed: 0.794s
+INFO [2020-12-18 04:39:58] 13236  Archived website id 1, period = month, date = 2020-12-01, segment = 'pageUrl%3D%40%25252F', 2 visits found. Time elapsed: 1.331s
+INFO [2020-12-18 04:39:58] 13236  Archived website id 1, period = month, date = 2020-12-01, segment = 'operatingSystemCode%3D%3DIOS', 2 visits found. Time elapsed: 1.331s
+INFO [2020-12-18 04:39:58] 13236  Archived website id 1, period = month, date = 2020-12-01, segment = 'visitCount%3C%3D5%3BpageUrl%3D%40%2Fblog%2F%3BcountryCode%3D%3Djp', 0 visits found. Time elapsed: 1.331s
+INFO [2020-12-18 04:39:59] 13236  Archived website id 1, period = month, date = 2020-12-01, segment = 'browserCode%3D%3DIE', 0 visits found. Time elapsed: 0.539s
+INFO [2020-12-18 04:40:00] 13236  Archived website id 1, period = year, date = 2020-01-01, segment = '', 2 visits found. Time elapsed: 1.064s
+INFO [2020-12-18 04:40:02] 13236  Archived website id 1, period = year, date = 2020-01-01, segment = 'pageUrl%3D%40%25252F', 2 visits found. Time elapsed: 1.850s
+INFO [2020-12-18 04:40:02] 13236  Archived website id 1, period = year, date = 2020-01-01, segment = 'operatingSystemCode%3D%3DIOS', 2 visits found. Time elapsed: 1.850s
+INFO [2020-12-18 04:40:02] 13236  Archived website id 1, period = year, date = 2020-01-01, segment = 'visitCount%3C%3D5%3BpageUrl%3D%40%2Fblog%2F%3BcountryCode%3D%3Djp', 0 visits found. Time elapsed: 1.850s
+INFO [2020-12-18 04:40:02] 13236  Archived website id 1, period = year, date = 2020-01-01, segment = 'browserCode%3D%3DIE', 0 visits found. Time elapsed: 0.532s
+INFO [2020-12-18 04:40:02] 13236  Finished archiving for site 1, 20 API requests, Time elapsed: 11.610s [1 / 3 done]
+INFO [2020-12-18 04:40:02] 13236  Start processing archives for site 2.
+INFO [2020-12-18 04:40:02] 13236  Finished archiving for site 2, 0 API requests, Time elapsed: 0.004s [2 / 3 done]
+INFO [2020-12-18 04:40:02] 13236  Start processing archives for site 3.
+INFO [2020-12-18 04:40:02] 13236  Finished archiving for site 3, 0 API requests, Time elapsed: 0.004s [3 / 3 done]
+INFO [2020-12-18 04:40:03] 13236  Done archiving!
+INFO [2020-12-18 04:40:03] 13236  ---------------------------
+INFO [2020-12-18 04:40:03] 13236  SUMMARY
+INFO [2020-12-18 04:40:03] 13236  Processed 20 archives.
+INFO [2020-12-18 04:40:03] 13236  Total API requests: 20
+INFO [2020-12-18 04:40:03] 13236  done: 20 req, 11742 ms, no error
+INFO [2020-12-18 04:40:03] 13236  Time elapsed: 11.742s
+INFO [2020-12-18 04:40:03] 13236  ---------------------------
+INFO [2020-12-18 04:40:03] 13236  SCHEDULED TASKS
+INFO [2020-12-18 04:40:03] 13236  Starting Scheduled tasks...
+INFO [2020-12-18 04:40:03] 13236  done
+INFO [2020-12-18 04:40:03] 13236  ---------------------------

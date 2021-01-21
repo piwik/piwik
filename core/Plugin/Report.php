@@ -15,6 +15,7 @@ use Piwik\Common;
 use Piwik\DataTable;
 use Piwik\DataTable\Filter\Sort;
 use Piwik\Metrics;
+use Piwik\Period;
 use Piwik\Piwik;
 use Piwik\Plugins\CoreVisualizations\Visualizations\HtmlTable;
 use Piwik\ViewDataTable\Factory as ViewDataTableFactory;
@@ -231,6 +232,9 @@ class Report
      * might depend on a setting (such as Ecommerce) of a site. In such a case you can perform any checks and then
      * return `true` or `false`. If your report is only available to users having super user access you can do the
      * following: `return Piwik::hasUserSuperUserAccess();`
+     *
+     * Classes that override this method must make sure to call the parent version as well.
+     *
      * @return bool
      * @api
      */
@@ -994,6 +998,23 @@ class Report
             }
         }
         return $result;
+    }
+
+    /**
+     * Returns `true` if this report requires visit data that is profilable (that is to say, visit data that accurately
+     * identifies visitors across visits, which generally requires using cookies or tracking user IDs). If a report requires
+     * this, and Matomo finds that existing data is not good enough, the reports will not be shown, since they will not be
+     * accurate.
+     *
+     * @api
+     */
+    public function isRequiresProfilableData()
+    {
+        if ($this->dimension->isRequiresProfilableData()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

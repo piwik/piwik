@@ -12,16 +12,20 @@ use Exception;
 use Piwik\API\DataTableManipulator\Flattener;
 use Piwik\API\DataTableManipulator\LabelFilter;
 use Piwik\API\DataTableManipulator\ReportTotalsCalculator;
+use Piwik\Archive\DataTableFactory;
 use Piwik\Common;
 use Piwik\DataTable;
 use Piwik\DataTable\DataTableInterface;
 use Piwik\DataTable\Filter\PivotByDimension;
+use Piwik\Metrics;
 use Piwik\Metrics\Formatter;
+use Piwik\Period;
 use Piwik\Piwik;
 use Piwik\Plugin\ProcessedMetric;
 use Piwik\Plugin\Report;
 use Piwik\Plugin\ReportsProvider;
 use Piwik\Plugins\API\Filter\DataComparisonFilter;
+use Piwik\Site;
 
 /**
  * Processes DataTables that should be served through Piwik's APIs. This processing handles
@@ -132,8 +136,50 @@ class DataTablePostProcessor
         $dataTable = $this->convertSegmentValueToSegment($dataTable);
         $dataTable = $this->applyQueuedFilters($dataTable);
         $dataTable = $this->applyRequestedColumnDeletion($dataTable);
+        $dataTable = $this->removeMetricsIfNotProfilable($dataTable);
         $dataTable = $this->applyLabelFilter($dataTable);
         $dataTable = $this->applyMetricsFormatting($dataTable);
+        return $dataTable;
+    }
+
+    private function removeMetricsIfNotProfilable(DataTableInterface $dataTable)
+    {
+        $dataTable->filter(function (DataTable $table) {
+            /** @var Site $site */
+            $site = $table->getMetadata('site');
+
+            /** @var Period $period */
+            $period = $table->getMetadata('period');
+
+            $segment = $table->getMetadata(DataTableFactory::TABLE_METADATA_SEGMENT_INDEX);
+
+            if (empty($site)
+                || empty($period)
+            ) {
+                return;
+            }
+
+            if (Request::isCurrentPeriodProfilable($site->getId(), $period->getLabel(), $period->getDateStart()->toString(), $segment)) {
+                return;
+            }
+
+            $metricsToRemove = [
+                Metrics::INDEX_NB_UNIQ_VISITORS,
+                Metrics::INDEX_SUM_DAILY_NB_UNIQ_VISITORS,
+                Metrics::INDEX_PAGE_ENTRY_NB_UNIQ_VISITORS,
+                Metrics::INDEX_PAGE_EXIT_NB_UNIQ_VISITORS,
+                Metrics::INDEX_PAGE_ENTRY_SUM_DAILY_NB_UNIQ_VISITORS,
+                Metrics::INDEX_PAGE_EXIT_SUM_DAILY_NB_UNIQ_VISITORS,
+            ];
+
+            $metricIdToNameMap = Metrics::getMappingFromIdToName();
+            foreach (array_values($metricsToRemove) as $indexMetric) {
+                $metricsToRemove[] = $metricIdToNameMap[$indexMetric];
+            }
+
+            $table->filter(DataTable\Filter\ColumnDelete::class, [$metricsToRemove]);
+        });
+
         return $dataTable;
     }
 

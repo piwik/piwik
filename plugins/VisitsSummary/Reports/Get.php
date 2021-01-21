@@ -47,7 +47,8 @@ class Get extends \Piwik\Plugin\Report
             'nb_visits',
             $this->usersColumn,
             'nb_actions',
-            'max_actions'
+            'max_actions',
+            'nb_profilable',
         );
         $this->subcategoryId = 'General_Overview';
         // Used to process metrics, not displayed/used directly

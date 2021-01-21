@@ -127,25 +127,25 @@ class OneVisitorOneWebsiteSeveralDaysDateRangeArchivingTest extends SystemTestCa
 
             /**
              *  In Each "Period=range" Archive, we expect following non zero numeric entries:
-             *                 5 metrics + 1 flag  // VisitsSummary
+             *                 6 metrics + 1 flag  // VisitsSummary
              *               + 2 metrics + 1 flag // Actions
              *               + 1 flag // Resolution
              *               + 1 flag // VisitTime
-             *               = 11
+             *               = 12
              *
              *   because we call VisitFrequency.get, this creates archives for visitorType==returning
              *   and visitorType==new segment.
              *          -> There are two archives for each segment (one for "countryCode!=aa"
              *                      and VisitFrequency creates two more.
              *
-             * So each period=range will have = 11 records + (5 metrics + 2 flags // VisitsSummary + 3 metrics // VisitorInterest)
-             *                                = 18
+             * So each period=range will have = 12 records + (6 metrics + 2 flags // VisitsSummary + 3 metrics // VisitorInterest)
+             *                                = 23
              *
              * Total expected records = count unique archives * records per archive
-             *                        = 3 * 21
-             *                        = 21
+             *                        = 3 * 24
+             *                        = 72
              */
-            'archive_numeric_2010_12' => 63,
+            'archive_numeric_2010_12' => 72,
 
             /**
              * In the January date range,
@@ -155,10 +155,10 @@ class OneVisitorOneWebsiteSeveralDaysDateRangeArchivingTest extends SystemTestCa
             'archive_blob_2011_01'    => $expectedActionsBlobsWhenFlattened,
 
             /**
-             *   5 metrics + 1 flag // VisitsSummary
+             *   6 metrics + 1 flag // VisitsSummary
              * + 2 metrics + 1 flag // Actions
              */
-            'archive_numeric_2011_01' => (6 + 3),
+            'archive_numeric_2011_01' => (7 + 3),
 
             // nothing in Feb
             'archive_blob_2011_02'    => 0,

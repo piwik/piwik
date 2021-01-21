@@ -9,11 +9,36 @@
 		<bounce_count_new>2</bounce_count_new>
 		<sum_visit_length_new>0</sum_visit_length_new>
 		<max_actions_new>1</max_actions_new>
+		<nb_profilable_new>2</nb_profilable_new>
 		<bounce_rate_new>100%</bounce_rate_new>
 		<nb_actions_per_visit_new>1</nb_actions_per_visit_new>
 		<avg_time_on_site_new>0</avg_time_on_site_new>
+		<nb_uniq_visitors_returning>0</nb_uniq_visitors_returning>
+		<nb_users_returning>0</nb_users_returning>
+		<nb_visits_returning>0</nb_visits_returning>
+		<nb_actions_returning>0</nb_actions_returning>
+		<nb_visits_converted_returning>0</nb_visits_converted_returning>
+		<bounce_count_returning>0</bounce_count_returning>
+		<sum_visit_length_returning>0</sum_visit_length_returning>
+		<max_actions_returning>0</max_actions_returning>
+		<nb_profilable_returning>0</nb_profilable_returning>
+		<bounce_rate_returning>0%</bounce_rate_returning>
+		<nb_actions_per_visit_returning>0</nb_actions_per_visit_returning>
+		<avg_time_on_site_returning>0</avg_time_on_site_returning>
 	</result>
 	<result period="2010-01-04,2010-01-10">
+		<nb_uniq_visitors_new>0</nb_uniq_visitors_new>
+		<nb_users_new>0</nb_users_new>
+		<nb_visits_new>0</nb_visits_new>
+		<nb_actions_new>0</nb_actions_new>
+		<nb_visits_converted_new>0</nb_visits_converted_new>
+		<bounce_count_new>0</bounce_count_new>
+		<sum_visit_length_new>0</sum_visit_length_new>
+		<max_actions_new>0</max_actions_new>
+		<nb_profilable_new>0</nb_profilable_new>
+		<bounce_rate_new>0%</bounce_rate_new>
+		<nb_actions_per_visit_new>0</nb_actions_per_visit_new>
+		<avg_time_on_site_new>0</avg_time_on_site_new>
 		<nb_uniq_visitors_returning>2</nb_uniq_visitors_returning>
 		<nb_users_returning>0</nb_users_returning>
 		<nb_visits_returning>7</nb_visits_returning>
@@ -22,11 +47,24 @@
 		<bounce_count_returning>1</bounce_count_returning>
 		<sum_visit_length_returning>5406</sum_visit_length_returning>
 		<max_actions_returning>5</max_actions_returning>
+		<nb_profilable_returning>7</nb_profilable_returning>
 		<bounce_rate_returning>14%</bounce_rate_returning>
 		<nb_actions_per_visit_returning>4.4</nb_actions_per_visit_returning>
 		<avg_time_on_site_returning>772</avg_time_on_site_returning>
 	</result>
 	<result period="2010-01-11,2010-01-17">
+		<nb_uniq_visitors_new>0</nb_uniq_visitors_new>
+		<nb_users_new>0</nb_users_new>
+		<nb_visits_new>0</nb_visits_new>
+		<nb_actions_new>0</nb_actions_new>
+		<nb_visits_converted_new>0</nb_visits_converted_new>
+		<bounce_count_new>0</bounce_count_new>
+		<sum_visit_length_new>0</sum_visit_length_new>
+		<max_actions_new>0</max_actions_new>
+		<nb_profilable_new>0</nb_profilable_new>
+		<bounce_rate_new>0%</bounce_rate_new>
+		<nb_actions_per_visit_new>0</nb_actions_per_visit_new>
+		<avg_time_on_site_new>0</avg_time_on_site_new>
 		<nb_uniq_visitors_returning>1</nb_uniq_visitors_returning>
 		<nb_users_returning>0</nb_users_returning>
 		<nb_visits_returning>2</nb_visits_returning>
@@ -35,6 +73,7 @@
 		<bounce_count_returning>0</bounce_count_returning>
 		<sum_visit_length_returning>1802</sum_visit_length_returning>
 		<max_actions_returning>5</max_actions_returning>
+		<nb_profilable_returning>2</nb_profilable_returning>
 		<bounce_rate_returning>0%</bounce_rate_returning>
 		<nb_actions_per_visit_returning>5</nb_actions_per_visit_returning>
 		<avg_time_on_site_returning>901</avg_time_on_site_returning>

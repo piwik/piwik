@@ -55,4 +55,8 @@ class GetNumberOfVisitsByDaysSinceLast extends Base
         $view->config->addTranslation('label', Piwik::translate('General_DaysSinceLastVisit'));
     }
 
+    public function isRequiresProfilableData()
+    {
+        return true;
+    }
 }

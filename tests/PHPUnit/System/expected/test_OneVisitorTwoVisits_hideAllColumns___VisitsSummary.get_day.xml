@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result>0</result>
+<result>
+	<nb_users>0</nb_users>
+	<nb_profilable>2</nb_profilable>
+</result>

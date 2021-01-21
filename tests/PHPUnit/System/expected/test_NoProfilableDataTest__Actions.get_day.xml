@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<results>
+	<result idSite="1">
+		<nb_pageviews>2</nb_pageviews>
+		<nb_uniq_pageviews>2</nb_uniq_pageviews>
+		<nb_downloads>0</nb_downloads>
+		<nb_uniq_downloads>0</nb_uniq_downloads>
+		<nb_outlinks>0</nb_outlinks>
+		<nb_uniq_outlinks>0</nb_uniq_outlinks>
+		<nb_searches>0</nb_searches>
+		<nb_keywords>0</nb_keywords>
+	</result>
+	<result idSite="2">
+		<nb_pageviews>1</nb_pageviews>
+		<nb_uniq_pageviews>1</nb_uniq_pageviews>
+		<nb_downloads>0</nb_downloads>
+		<nb_uniq_downloads>0</nb_uniq_downloads>
+		<nb_outlinks>0</nb_outlinks>
+		<nb_uniq_outlinks>0</nb_uniq_outlinks>
+		<nb_searches>0</nb_searches>
+		<nb_keywords>0</nb_keywords>
+	</result>
+</results>

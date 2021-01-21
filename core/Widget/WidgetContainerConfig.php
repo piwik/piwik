@@ -8,6 +8,8 @@
  */
 namespace Piwik\Widget;
 
+use Piwik\Report\ReportWidgetConfig;
+
 /**
  * Defines a new widget container. Widget containers are useful when you want to combine several widgets
  * into one unique widgets. For example you could combine an evolution graph widget with a sparklines widget
@@ -90,6 +92,10 @@ class WidgetContainerConfig extends WidgetConfig
      */
     public function addWidgetConfig(WidgetConfig $widget)
     {
+        if ($widget instanceof ReportWidgetConfig && !$widget->isReportEnabled()) {
+            return $this;
+        }
+
         $this->widgets[] = $widget;
 
         return $this;

@@ -7,6 +7,7 @@
 	<max_actions>4</max_actions>
 	<bounce_count>0</bounce_count>
 	<sum_visit_length>361</sum_visit_length>
+	<nb_profilable>1</nb_profilable>
 	<nb_visits_new>1</nb_visits_new>
 	<nb_actions_new>4</nb_actions_new>
 	<nb_uniq_visitors_new>1</nb_uniq_visitors_new>

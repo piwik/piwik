@@ -521,7 +521,8 @@
         "Custom": "Custom",
         "PreviousPeriod": "Previous Period",
         "PreviousYear": "Previous Year",
-        "ViewAccessRequired": "The token_auth used has too much access to be used in a non-API request URL. Please use an app specific password for a user that only has view access."
+        "ViewAccessRequired": "The token_auth used has too much access to be used in a non-API request URL. Please use an app specific password for a user that only has view access.",
+        "NoProfilableDataFooterMessage": "This report requires profilable data, but the current period of %1$s does not have any, so this report will not have useful information and should not be relied upon."
     },
     "Mobile": {
         "AboutPiwikMobile": "About Matomo Mobile",

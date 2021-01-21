@@ -17,6 +17,7 @@ use Piwik\DataTable\Filter\PivotByDimension;
 use Piwik\Metrics;
 use Piwik\Period\PeriodValidator;
 use Piwik\Piwik;
+use Piwik\Plugin\Report;
 use Piwik\Plugins\API\API;
 use Piwik\Plugin\ReportsProvider;
 
@@ -683,11 +684,13 @@ class   Config
      */
     public function setDefaultColumnsToDisplay($columns, $hasNbVisits, $hasNbUniqVisitors)
     {
+        $isProfilable = ApiRequest::isCurrentPeriodProfilable();
+
         if ($hasNbVisits || $hasNbUniqVisitors) {
             $columnsToDisplay = array('label');
 
             // if unique visitors data is available, show it, otherwise just visits
-            if ($hasNbUniqVisitors) {
+            if ($hasNbUniqVisitors && $isProfilable) {
                 $columnsToDisplay[] = 'nb_uniq_visitors';
             } else {
                 $columnsToDisplay[] = 'nb_visits';

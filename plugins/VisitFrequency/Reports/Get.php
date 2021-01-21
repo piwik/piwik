@@ -8,9 +8,11 @@
  */
 namespace Piwik\Plugins\VisitFrequency\Reports;
 
+use Piwik\API\Request;
 use Piwik\DataTable;
 use Piwik\NumberFormatter;
 use Piwik\Piwik;
+use Piwik\Plugin\Report;
 use Piwik\Plugin\ViewDataTable;
 use Piwik\Plugins\CoreHome\Columns\Metrics\ActionsPerVisit;
 use Piwik\Plugins\CoreHome\Columns\Metrics\AverageTimeOnSite;
@@ -57,20 +59,22 @@ class Get extends \Piwik\Plugin\Report
 
     public function configureWidgets(WidgetsList $widgetsList, ReportWidgetFactory $factory)
     {
-        $widgetsList->addWidgetConfig(
-            $factory->createWidget()
-                ->setName('VisitFrequency_WidgetGraphReturning')
-                ->forceViewDataTable(Evolution::ID)
-                ->setAction('getEvolutionGraph')
-                ->setOrder(1)
-        );
+        if (Request::isCurrentPeriodProfilable()) {
+            $widgetsList->addWidgetConfig(
+                $factory->createWidget()
+                    ->setName('VisitFrequency_WidgetGraphReturning')
+                    ->forceViewDataTable(Evolution::ID)
+                    ->setAction('getEvolutionGraph')
+                    ->setOrder(1)
+            );
 
-        $widgetsList->addWidgetConfig(
-            $factory->createWidget()
-                ->forceViewDataTable(Sparklines::ID)
-                ->setName('VisitFrequency_WidgetOverview')
-                ->setOrder(2)
-        );
+            $widgetsList->addWidgetConfig(
+                $factory->createWidget()
+                    ->forceViewDataTable(Sparklines::ID)
+                    ->setName('VisitFrequency_WidgetOverview')
+                    ->setOrder(2)
+            );
+        }
     }
 
     public function configureView(ViewDataTable $view)

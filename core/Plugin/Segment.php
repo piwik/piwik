@@ -64,6 +64,8 @@ class Segment
      */
     private $requiresRegisteredUser = false;
 
+    private $requiresProfilableData = false;
+
     /**
      * @ignore
      */
@@ -377,6 +379,8 @@ class Segment
             $segment['suggestedValuesApi'] = $this->suggestedValuesApi;
         }
 
+        $segment['requiresProfilableData'] = $this->requiresProfilableData;
+
         return $segment;
     }
 
@@ -435,5 +439,27 @@ class Segment
         if ($this->segment && $this->unionOfSegments && in_array($this->segment, $this->unionOfSegments, true)) {
             throw new Exception(sprintf('The segment %s contains a union segment to itself', $this->name));
         }
+    }
+
+    /**
+     * Returns true if this segment is only useful with profilable data, false if not.
+     *
+     * @return bool
+     */
+    public function isRequiresProfilableData(): bool
+    {
+        return $this->requiresProfilableData;
+    }
+
+    /**
+     * Set whether this segment is only useful with profilable data. If a segment requires
+     * profilable data and Matomo detects that this data is not present, the segment will be
+     * hidden in the UI. (It will still work in the API.)
+     *
+     * @param bool $requiresProfilableData
+     */
+    public function setRequiresProfilableData(bool $requiresProfilableData): void
+    {
+        $this->requiresProfilableData = $requiresProfilableData;
     }
 }

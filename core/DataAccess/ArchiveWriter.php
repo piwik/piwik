@@ -211,8 +211,8 @@ class ArchiveWriter
 
         $valueSeen = false;
         foreach ($records as $record) {
-            // don't record zero
-            if (empty($record[1])) {
+            // don't record zero unless it's nb_profilable
+            if (empty($record[1]) && $record[0] != 'nb_profilable') {
                 continue;
             }
 
@@ -251,7 +251,8 @@ class ArchiveWriter
      */
     public function insertRecord($name, $value)
     {
-        if ($this->isRecordZero($value)) {
+        // NOTE: we allow nb_profilable to be there since periods before nb_profilable was archived will not have the data, and we want to know the difference
+        if ($this->isRecordZero($value) && $name != 'nb_profilable') {
             return false;
         }
 

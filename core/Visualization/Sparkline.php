@@ -64,7 +64,6 @@ class Sparkline implements ViewInterface
             return;
         }
 
-
         $thousandSeparator = Piwik::translate('Intl_NumberSymbolGroup');
         $decimalSeparator = Piwik::translate('Intl_NumberSymbolDecimal');
 

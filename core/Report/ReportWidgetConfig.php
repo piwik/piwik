@@ -7,6 +7,7 @@
  *
  */
 namespace Piwik\Report;
+use Piwik\Plugin\ReportsProvider;
 use Piwik\Widget\WidgetConfig;
 
 /**
@@ -87,4 +88,14 @@ class ReportWidgetConfig extends WidgetConfig
         return $defaultParams + $parameters;
     }
 
+    public function getReport()
+    {
+        return ReportsProvider::factory($this->module, $this->action);
+    }
+
+    public function isReportEnabled()
+    {
+        $report = $this->getReport();
+        return empty($report) ? true : $report->isEnabled();
+    }
 }

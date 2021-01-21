@@ -61,6 +61,7 @@
 			<bounce_count>8</bounce_count>
 			<sum_visit_length>0</sum_visit_length>
 			<max_actions>1</max_actions>
+			<nb_profilable>0</nb_profilable>
 			<bounce_rate>100%</bounce_rate>
 			<nb_actions_per_visit>1</nb_actions_per_visit>
 			<avg_time_on_site>0</avg_time_on_site>
@@ -80,6 +81,8 @@
 			<sum_visit_length_change_from>+0%</sum_visit_length_change_from>
 			<max_actions_change>+100%</max_actions_change>
 			<max_actions_change_from>-100%</max_actions_change_from>
+			<nb_profilable_change>+0%</nb_profilable_change>
+			<nb_profilable_change_from>+0%</nb_profilable_change_from>
 			<bounce_rate_change>+100%</bounce_rate_change>
 			<bounce_rate_change_from>-100%</bounce_rate_change_from>
 			<nb_actions_per_visit_change>+100%</nb_actions_per_visit_change>

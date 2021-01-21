@@ -6,6 +6,7 @@
 	<bounce_count>2</bounce_count>
 	<sum_visit_length>1623</sum_visit_length>
 	<max_actions>5</max_actions>
+	<nb_profilable>3</nb_profilable>
 	<bounce_rate>67%</bounce_rate>
 	<nb_actions_per_visit>2.3</nb_actions_per_visit>
 	<avg_time_on_site>541</avg_time_on_site>
