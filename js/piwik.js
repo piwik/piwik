@@ -2160,8 +2160,8 @@ if (typeof window.Matomo !== 'object') {
                 // Current URL and Referrer URL
                 locationArray = urlFixup(documentAlias.domain, windowAlias.location.href, getReferrer()),
                 domainAlias = domainFixup(locationArray[0]),
-                locationHrefAlias = safeDecodeWrapper(locationArray[1]),
-                configReferrerUrl = safeDecodeWrapper(locationArray[2]),
+                locationHrefAlias = locationArray[1],
+                configReferrerUrl = locationArray[2],
 
                 enableJSErrorTracking = false,
 
