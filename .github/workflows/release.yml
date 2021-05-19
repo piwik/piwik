@@ -1,0 +1,129 @@
+
+name: Build release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build'
+        required: false
+        default: ''
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Check if user is in group"
+      run: |
+          MEMBER=$( curl -s \
+                 --request GET \
+                 --header 'authorization: Bearer ${{ secrets.GITTOKEN }}' \
+                 --header 'content-type: application/json' \
+                 --url https://api.github.com/orgs/matomo-org/teams/release-team/members \
+                 | jq '.[] | select(.login == "${{ github.actor }}")' )
+          
+          if [[ -z "$MEMBER" ]]
+          then
+           echo "Action was not triggered by a member with release permission"
+           exit 1;
+          fi
+      shell: bash
+    - uses: actions/checkout@v2
+      with:
+        lfs: false
+    - name: Import GPG key
+      id: import_gpg
+      uses: crazy-max/ghaction-import-gpg@v3
+      with:
+        gpg-private-key: ${{ secrets.GPG_CERTIFICATE }}
+        passphrase: ${{ secrets.GPG_CERTIFICATE_PASS }}
+    - name: Add SSH key
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      run: |
+          mkdir -p /home/runner/.ssh
+          ssh-keyscan matomo.org >> /home/runner/.ssh/known_hosts
+          # DOKKU_SSH_KEY is the name of the repository secret
+          echo "${{ secrets.SSH_KEY }}" > /home/runner/.ssh/github_actions
+          chmod 600 /home/runner/.ssh/github_actions
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+          ssh-add /home/runner/.ssh/github_actions
+    - name: Check preconditions, create tag, build and publish release
+      id: tag
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      run: |
+          if [[ -n "${{ github.event.inputs.version }}" ]]
+          then
+            version="${{ github.event.inputs.version }}"
+            echo "Version to re-build: '$version'"
+            
+            git fetch --tags -q 2>/dev/null
+            tag_exists=$( git tag --list "$version" )
+          
+            if [[ -z "$tag_exists" ]]
+            then
+              echo "A tag for $version does not exist."
+              exit 1
+            fi
+            
+            echo ::set-output name=update::true
+          else
+            version=$( cat core/Version.php | grep -oP "VERSION = '\K([^\']+)" )
+            echo "Version to build: '$version'"
+          
+            git fetch --tags -q 2>/dev/null
+            tag_exists=$( git tag --list "$version" )
+          
+            if [[ -n "$tag_exists" ]]
+            then
+              echo "A tag for $tag_exists already exists."
+              exit 1
+            fi
+          
+            echo "Creating a tag for $version"
+          
+            git tag $version
+            git push origin tags/$version
+            
+            echo ::set-output name=update::false
+          fi
+          
+          if [[ "$version" =~ "-" ]]
+          then
+            echo ::set-output name=prerelease::true
+            body="## Matomo ${version} (Pre-release)
+            
+            We recommend to read [this FAQ](http://matomo.org/faq/how-to-update/faq_159/) before using a pre-release in a production environment.
+            
+            Please use the attached archives for installing or updating Matomo.
+            The source code download is only meant for developers and will require extra work to install it. 
+             - Latest stable production release can be found at https://matomo.org/download/ ([learn more](https://matomo.org/docs/installation/)) (recommended)
+             - Beta and Release Candidates releases can be found at https://builds.matomo.org/ ([learn more](http://matomo.org/faq/how-to-update/faq_159/))"
+          else
+            echo ::set-output name=prerelease::false
+            body="## [Matomo ${version} Changelog](https://matomo.org/changelog/matomo-${version//./-}/)
+            
+            Please use the attached archives for installing or updating Matomo.
+            The source code download is only meant for developers and will require extra work to install it. 
+             - Latest stable production release can be found at https://matomo.org/download/ ([learn more](https://matomo.org/docs/installation/)) (recommended)
+             - Beta and Release Candidates releases can be found at https://builds.matomo.org/ ([learn more](http://matomo.org/faq/how-to-update/faq_159/))"
+          fi
+
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo ::set-output name=version::$version
+          echo ::set-output name=body::$body
+
+          git clone --branch actiontest https://github.com/matomo-org/matomo-package.git matomo-package
+          cd matomo-package
+          ./scripts/build-package.sh $version
+      shell: bash 
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "matomo-package/archives/matomo-${{ steps.tag.outputs.version }}.*"
+        allowUpdates: ${{ steps.tag.outputs.update }}
+        tag: ${{ steps.tag.outputs.version }}
+        body: ${{ steps.tag.outputs.body }}
+        prerelease: ${{ steps.tag.outputs.prerelease }}
+        token: ${{ secrets.GITHUB_TOKEN }}
