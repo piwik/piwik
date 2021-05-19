@@ -115,7 +115,7 @@ jobs:
           echo ::set-output name=version::$version
           echo ::set-output name=body::$body
 
-          git clone --branch actiontest https://github.com/matomo-org/matomo-package.git matomo-package
+          git clone https://github.com/matomo-org/matomo-package.git matomo-package
           cd matomo-package
           ./scripts/build-package.sh $version
       shell: bash 
