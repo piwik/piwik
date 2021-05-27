@@ -316,6 +316,7 @@ class ArchivingHelper
     protected static $defaultActionName = null;
     protected static $defaultActionNameWhenNotDefined = null;
     protected static $defaultActionUrlWhenNotDefined = null;
+    public static $actionsIncludeHostInReport = null;
 
     public static function reloadConfig()
     {
@@ -335,6 +336,12 @@ class ArchivingHelper
         self::$maximumRowsInDataTableSiteSearch = Config::getInstance()->General['datatable_archiving_maximum_rows_site_search'];
 
         DataTable::setMaximumDepthLevelAllowedAtLeast(self::getSubCategoryLevelLimit() + 1);
+    }
+
+    public static function setSiteDependentConfig($idSite)
+    {
+        $settings = new MeasurableSettings($idSite);
+        self::$actionsIncludeHostInReport = $settings->includeHostInPageUrlsReport->getValue();
     }
 
     /**
@@ -635,7 +642,12 @@ class ArchivingHelper
             return array(trim($urlHost), $path);
         }
 
-        $name = $urlPath;
+        $name = '';
+        if (self::$actionsIncludeHostInReport) {
+            $name .= $urlHost . '/';
+        }
+
+        $name .= $urlPath;
         if ($name === '' || substr($name, -1) == '/') {
             $name .= self::$defaultActionName;
         }

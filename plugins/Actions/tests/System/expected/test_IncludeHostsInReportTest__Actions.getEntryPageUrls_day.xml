@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<label>host1.com</label>
+		<nb_visits>1</nb_visits>
+		<nb_hits>1</nb_hits>
+		<sum_time_spent>0</sum_time_spent>
+		<sum_bandwidth>0</sum_bandwidth>
+		<nb_hits_with_bandwidth>0</nb_hits_with_bandwidth>
+		<min_bandwidth />
+		<max_bandwidth />
+		<entry_nb_visits>1</entry_nb_visits>
+		<entry_nb_actions>1</entry_nb_actions>
+		<entry_sum_visit_length>0</entry_sum_visit_length>
+		<entry_bounce_count>1</entry_bounce_count>
+		<exit_nb_visits>1</exit_nb_visits>
+		<avg_bandwidth>0</avg_bandwidth>
+		<avg_page_load_time>0</avg_page_load_time>
+		<avg_time_on_page>0</avg_time_on_page>
+		<bounce_rate>100%</bounce_rate>
+		<exit_rate>100%</exit_rate>
+		<segment>pageUrl=^http%253A%252F%252Fpiwik.net%252Fhost1.com</segment>
+		<subtable>
+			<row>
+				<label>a</label>
+				<nb_visits>1</nb_visits>
+				<nb_hits>1</nb_hits>
+				<sum_time_spent>0</sum_time_spent>
+				<sum_bandwidth>0</sum_bandwidth>
+				<nb_hits_with_bandwidth>0</nb_hits_with_bandwidth>
+				<min_bandwidth />
+				<max_bandwidth />
+				<entry_nb_visits>1</entry_nb_visits>
+				<entry_nb_actions>1</entry_nb_actions>
+				<entry_sum_visit_length>0</entry_sum_visit_length>
+				<entry_bounce_count>1</entry_bounce_count>
+				<exit_nb_visits>1</exit_nb_visits>
+				<avg_time_on_page>0</avg_time_on_page>
+				<bounce_rate>100%</bounce_rate>
+				<exit_rate>100%</exit_rate>
+				<segment>pageUrl=^http%253A%252F%252Fpiwik.net%252Fhost1.com%252Fa</segment>
+				<subtable>
+					<row>
+						<label>/page</label>
+						<nb_visits>1</nb_visits>
+						<nb_uniq_visitors>1</nb_uniq_visitors>
+						<nb_hits>1</nb_hits>
+						<sum_time_spent>0</sum_time_spent>
+						<sum_bandwidth>0</sum_bandwidth>
+						<nb_hits_with_bandwidth>0</nb_hits_with_bandwidth>
+						<min_bandwidth />
+						<max_bandwidth />
+						<entry_nb_uniq_visitors>1</entry_nb_uniq_visitors>
+						<entry_nb_visits>1</entry_nb_visits>
+						<entry_nb_actions>1</entry_nb_actions>
+						<entry_sum_visit_length>0</entry_sum_visit_length>
+						<entry_bounce_count>1</entry_bounce_count>
+						<exit_nb_uniq_visitors>1</exit_nb_uniq_visitors>
+						<exit_nb_visits>1</exit_nb_visits>
+						<avg_time_on_page>0</avg_time_on_page>
+						<bounce_rate>100%</bounce_rate>
+						<exit_rate>100%</exit_rate>
+						<url>http://host1.com/a/page</url>
+						<segment>entryPageUrl==http%253A%252F%252Fhost1.com%252Fa%252Fpage</segment>
+					</row>
+				</subtable>
+			</row>
+		</subtable>
+	</row>
+	<row>
+		<label>host2.com</label>
+		<nb_visits>1</nb_visits>
+		<nb_hits>1</nb_hits>
+		<sum_time_spent>0</sum_time_spent>
+		<sum_bandwidth>0</sum_bandwidth>
+		<nb_hits_with_bandwidth>0</nb_hits_with_bandwidth>
+		<min_bandwidth />
+		<max_bandwidth />
+		<entry_nb_visits>1</entry_nb_visits>
+		<entry_nb_actions>2</entry_nb_actions>
+		<entry_sum_visit_length>1</entry_sum_visit_length>
+		<entry_bounce_count>0</entry_bounce_count>
+		<avg_bandwidth>0</avg_bandwidth>
+		<avg_page_load_time>0</avg_page_load_time>
+		<avg_time_on_page>0</avg_time_on_page>
+		<bounce_rate>0%</bounce_rate>
+		<exit_rate>0%</exit_rate>
+		<segment>pageUrl=^http%253A%252F%252Fpiwik.net%252Fhost2.com</segment>
+		<subtable>
+			<row>
+				<label>a</label>
+				<nb_visits>1</nb_visits>
+				<nb_hits>1</nb_hits>
+				<sum_time_spent>0</sum_time_spent>
+				<sum_bandwidth>0</sum_bandwidth>
+				<nb_hits_with_bandwidth>0</nb_hits_with_bandwidth>
+				<min_bandwidth />
+				<max_bandwidth />
+				<entry_nb_visits>1</entry_nb_visits>
+				<entry_nb_actions>2</entry_nb_actions>
+				<entry_sum_visit_length>1</entry_sum_visit_length>
+				<entry_bounce_count>0</entry_bounce_count>
+				<avg_time_on_page>0</avg_time_on_page>
+				<bounce_rate>0%</bounce_rate>
+				<exit_rate>0%</exit_rate>
+				<segment>pageUrl=^http%253A%252F%252Fpiwik.net%252Fhost2.com%252Fa</segment>
+				<subtable>
+					<row>
+						<label>/page</label>
+						<nb_visits>1</nb_visits>
+						<nb_uniq_visitors>1</nb_uniq_visitors>
+						<nb_hits>1</nb_hits>
+						<sum_time_spent>0</sum_time_spent>
+						<sum_bandwidth>0</sum_bandwidth>
+						<nb_hits_with_bandwidth>0</nb_hits_with_bandwidth>
+						<min_bandwidth />
+						<max_bandwidth />
+						<entry_nb_uniq_visitors>1</entry_nb_uniq_visitors>
+						<entry_nb_visits>1</entry_nb_visits>
+						<entry_nb_actions>2</entry_nb_actions>
+						<entry_sum_visit_length>1</entry_sum_visit_length>
+						<entry_bounce_count>0</entry_bounce_count>
+						<avg_time_on_page>0</avg_time_on_page>
+						<bounce_rate>0%</bounce_rate>
+						<exit_rate>0%</exit_rate>
+						<url>http://host2.com/a/page</url>
+						<segment>entryPageUrl==http%253A%252F%252Fhost2.com%252Fa%252Fpage</segment>
+					</row>
+				</subtable>
+			</row>
+		</subtable>
+	</row>
+</result>

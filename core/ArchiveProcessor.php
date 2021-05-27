@@ -200,7 +200,8 @@ class ArchiveProcessor
                                               $columnToSortByBeforeTruncation = null,
                                               &$columnsAggregationOperation = null,
                                               $columnsToRenameAfterAggregation = null,
-                                              $countRowsRecursive = true)
+                                              $countRowsRecursive = true,
+                                              $preprocessTables = null)
     {
         if (!is_array($recordNames)) {
             $recordNames = array($recordNames);
@@ -210,7 +211,7 @@ class ArchiveProcessor
         foreach ($recordNames as $recordName) {
             $latestUsedTableId = Manager::getInstance()->getMostRecentTableId();
 
-            $table = $this->aggregateDataTableRecord($recordName, $columnsAggregationOperation, $columnsToRenameAfterAggregation);
+            $table = $this->aggregateDataTableRecord($recordName, $columnsAggregationOperation, $columnsToRenameAfterAggregation, $preprocessTables);
 
             $nameToCount[$recordName]['level0'] = $table->getRowsCount();
             if ($countRowsRecursive === true || (is_array($countRowsRecursive) && in_array($recordName, $countRowsRecursive))) {
@@ -337,13 +338,19 @@ class ArchiveProcessor
      * @param array $columnsToRenameAfterAggregation columns in the array (old name, new name) to be renamed as the sum operation is not valid on them (eg. nb_uniq_visitors->sum_daily_nb_uniq_visitors)
      * @return DataTable
      */
-    protected function aggregateDataTableRecord($name, $columnsAggregationOperation = null, $columnsToRenameAfterAggregation = null)
+    protected function aggregateDataTableRecord($name, $columnsAggregationOperation = null, $columnsToRenameAfterAggregation = null, $preprocessTables = null)
     {
         try {
             ErrorHandler::pushFatalErrorBreadcrumb(__CLASS__, ['name' => $name]);
 
             // By default we shall aggregate all sub-tables.
             $dataTable = $this->getArchive()->getDataTableExpanded($name, $idSubTable = null, $depth = null, $addMetadataSubtableId = false);
+
+            if ($preprocessTables
+                && $dataTable instanceof Map // sanity check
+            ) {
+                $preprocessTables($dataTable);
+            }
 
             $columnsRenamed = false;
 

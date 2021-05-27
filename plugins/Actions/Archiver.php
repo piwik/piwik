@@ -8,6 +8,7 @@
  */
 namespace Piwik\Plugins\Actions;
 
+use Piwik\Common;
 use Piwik\Config;
 use Piwik\DataArray;
 use Piwik\DataTable;
@@ -39,6 +40,8 @@ class Archiver extends \Piwik\Plugin\Archiver
     const METRIC_SEARCHES_RECORD_NAME = 'Actions_nb_searches';
     const METRIC_KEYWORDS_RECORD_NAME = 'Actions_nb_keywords';
 
+    const INCLUDES_HOST_DATATABLE_METADATA = 'Actions_label_includes_host';
+
     protected $actionsTablesByType = null;
     protected $isSiteSearchEnabled = false;
 
@@ -57,6 +60,7 @@ class Archiver extends \Piwik\Plugin\Archiver
     {
         $rankingQueryLimit = ArchivingHelper::getRankingQueryLimit();
         ArchivingHelper::reloadConfig();
+        ArchivingHelper::setSiteDependentConfig($this->getProcessor()->getParams()->getSite()->getId());
 
         $this->initActionsTables();
 
@@ -111,9 +115,9 @@ class Archiver extends \Piwik\Plugin\Archiver
 
         //we need an extra JOIN to know whether the referrer "idaction_name_ref" was a Site Search request
         $from[] = array(
-            "table"      => "log_action",
+            "table" => "log_action",
             "tableAlias" => "log_action_name_ref",
-            "joinOn"     => "log_link_visit_action.idaction_name_ref = log_action_name_ref.idaction"
+            "joinOn" => "log_link_visit_action.idaction_name_ref = log_action_name_ref.idaction"
         );
 
         $selectPageIsFollowingSiteSearch = ",
@@ -171,7 +175,7 @@ class Archiver extends \Piwik\Plugin\Archiver
         $where = "%s.search_cat != '' AND %s.search_cat IS NOT NULL";
         $dimensions = array('search_cat');
         $query = $this->getLogAggregator()->queryActionsByDimension(
-            $dimensions, 
+            $dimensions,
             $where
         );
 
@@ -199,12 +203,12 @@ class Archiver extends \Piwik\Plugin\Archiver
         $from = array(
             "log_link_visit_action",
             array(
-                "table"  => "log_action",
+                "table" => "log_action",
                 "joinOn" => "log_link_visit_action.%s = log_action.idaction"
             )
         );
 
-        $where  = $this->getLogAggregator()->getWhereStatement('log_link_visit_action', 'server_time');
+        $where = $this->getLogAggregator()->getWhereStatement('log_link_visit_action', 'server_time');
         $where .= " AND log_link_visit_action.%s IS NOT NULL"
             . $this->getWhereClauseActionIsNotEvent();
 
@@ -303,16 +307,16 @@ class Archiver extends \Piwik\Plugin\Archiver
             $rankingQuery->addLabelColumn('idaction');
             $rankingQuery->addColumn(PiwikMetrics::INDEX_PAGE_ENTRY_NB_UNIQ_VISITORS);
             $rankingQuery->addColumn(array(PiwikMetrics::INDEX_PAGE_ENTRY_NB_VISITS,
-                                           PiwikMetrics::INDEX_PAGE_ENTRY_NB_ACTIONS,
-                                           PiwikMetrics::INDEX_PAGE_ENTRY_SUM_VISIT_LENGTH,
-                                           PiwikMetrics::INDEX_PAGE_ENTRY_BOUNCE_COUNT), 'sum');
+                PiwikMetrics::INDEX_PAGE_ENTRY_NB_ACTIONS,
+                PiwikMetrics::INDEX_PAGE_ENTRY_SUM_VISIT_LENGTH,
+                PiwikMetrics::INDEX_PAGE_ENTRY_BOUNCE_COUNT), 'sum');
             $rankingQuery->partitionResultIntoMultipleGroups('type', array_keys($this->actionsTablesByType));
 
             $extraSelects = 'log_action.type, log_action.name,';
             $from = array(
                 "log_visit",
                 array(
-                    "table"  => "log_action",
+                    "table" => "log_action",
                     "joinOn" => "log_visit.%s = log_action.idaction"
                 )
             );
@@ -330,7 +334,7 @@ class Archiver extends \Piwik\Plugin\Archiver
                 sum(log_visit.visit_total_time) as `" . PiwikMetrics::INDEX_PAGE_ENTRY_SUM_VISIT_LENGTH . "`,
                 sum(case log_visit.visit_total_actions when 1 then 1 when 0 then 1 else 0 end) as `" . PiwikMetrics::INDEX_PAGE_ENTRY_BOUNCE_COUNT . "`";
 
-        $where  = $this->getLogAggregator()->getWhereStatement('log_visit', 'visit_last_action_time');
+        $where = $this->getLogAggregator()->getWhereStatement('log_visit', 'visit_last_action_time');
         $where .= " AND log_visit.%s > 0";
 
         $groupBy = "log_visit.%s";
@@ -357,7 +361,7 @@ class Archiver extends \Piwik\Plugin\Archiver
             $from = array(
                 "log_visit",
                 array(
-                    "table"  => "log_action",
+                    "table" => "log_action",
                     "joinOn" => "log_visit.%s = log_action.idaction"
                 )
             );
@@ -372,7 +376,7 @@ class Archiver extends \Piwik\Plugin\Archiver
                 count(distinct log_visit.idvisitor) as `" . PiwikMetrics::INDEX_PAGE_EXIT_NB_UNIQ_VISITORS . "`,
                 count(*) as `" . PiwikMetrics::INDEX_PAGE_EXIT_NB_VISITS . "`";
 
-        $where  = $this->getLogAggregator()->getWhereStatement('log_visit', 'visit_last_action_time');
+        $where = $this->getLogAggregator()->getWhereStatement('log_visit', 'visit_last_action_time');
         $where .= " AND log_visit.%s > 0";
 
         $groupBy = "log_visit.%s";
@@ -399,7 +403,7 @@ class Archiver extends \Piwik\Plugin\Archiver
             $from = array(
                 "log_link_visit_action",
                 array(
-                    "table"  => "log_action",
+                    "table" => "log_action",
                     "joinOn" => "log_link_visit_action.%s = log_action.idaction"
                 )
             );
@@ -439,9 +443,17 @@ class Archiver extends \Piwik\Plugin\Archiver
         $this->insertSiteSearchReports();
     }
 
+    protected function setIncludesHostInLabelMetadata(DataTable $table)
+    {
+        if (ArchivingHelper::$actionsIncludeHostInReport) {
+            $table->setMetadata(self::INCLUDES_HOST_DATATABLE_METADATA, true);
+        }
+    }
+
     protected function insertPageUrlsReports()
     {
         $dataTable = $this->getDataTable(Action::TYPE_PAGE_URL);
+        $this->setIncludesHostInLabelMetadata($dataTable);
 
         $prefix = $this->getProcessor()->getParams()->getSite()->getMainUrl();
         $prefix = rtrim($prefix, '/') . '/';
@@ -532,11 +544,22 @@ class Archiver extends \Piwik\Plugin\Archiver
     public function aggregateMultipleReports()
     {
         ArchivingHelper::reloadConfig();
-        $dataTableToSum = array(
-            self::PAGE_TITLES_RECORD_NAME,
-            self::PAGE_URLS_RECORD_NAME,
+        ArchivingHelper::setSiteDependentConfig($this->getProcessor()->getParams()->getSite()->getId());
+        $mergeHostAndNonHost = function (DataTable\Map $tables) {
+            $this->mergeHostAndNonHostInTablesQueriedBeforeAggregation($tables);
+        };
+
+        $this->getProcessor()->aggregateDataTableRecords(self::PAGE_URLS_RECORD_NAME,
+            ArchivingHelper::$maximumRowsInDataTableLevelZero,
+            ArchivingHelper::$maximumRowsInSubDataTable,
+            ArchivingHelper::$columnToSortByBeforeTruncation,
+            Metrics::$columnsAggregationOperation,
+            Metrics::$columnsToRenameAfterAggregation,
+            $countRowsRecursive = array(),
+            $preprocessTables = $mergeHostAndNonHost
         );
-        $this->getProcessor()->aggregateDataTableRecords($dataTableToSum,
+
+        $this->getProcessor()->aggregateDataTableRecords(self::PAGE_TITLES_RECORD_NAME,
             ArchivingHelper::$maximumRowsInDataTableLevelZero,
             ArchivingHelper::$maximumRowsInSubDataTable,
             ArchivingHelper::$columnToSortByBeforeTruncation,
@@ -565,5 +588,35 @@ class Archiver extends \Piwik\Plugin\Archiver
 
         // Unique Keywords can't be summed, instead we take the RowsCount() of the keyword table
         $this->getProcessor()->insertNumericRecord(self::METRIC_KEYWORDS_RECORD_NAME, $nameToCount[self::SITE_SEARCH_RECORD_NAME]['level0']);
+    }
+
+    private function mergeHostAndNonHostInTablesQueriedBeforeAggregation(DataTable\Map $tables)
+    {
+        $shouldRemoveHost = false;
+        foreach ($tables->getDataTables() as $childTable) {
+            if (!$childTable->getMetadata(self::INCLUDES_HOST_DATATABLE_METADATA)) {
+                $shouldRemoveHost = true;
+                break;
+            }
+        }
+
+        if (!$shouldRemoveHost) {
+            return;
+        }
+
+        foreach ($tables->getDataTables() as $key => $childTable) {
+            if (!$childTable->getMetadata(self::INCLUDES_HOST_DATATABLE_METADATA)) {
+                continue;
+            }
+
+            $newTable = $childTable->mergeSubtables();
+
+            $childTableMetadata = $childTable->getAllTableMetadata();
+            unset($childTableMetadata[self::INCLUDES_HOST_DATATABLE_METADATA]);
+            $newTable->setAllTableMetadata($childTableMetadata);
+
+            $tables->addTable($newTable, $key);
+            Common::destroy($childTable);
+        }
     }
 }
