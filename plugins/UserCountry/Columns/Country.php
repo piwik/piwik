@@ -96,7 +96,19 @@ class Country extends Base
             return strtolower($country);
         }
 
-        $country = $this->getCountryUsingProviderExtensionIfValid($userInfo['ip']);
+        // Detecting the country based on the provider info, requires a DNS reverse lookup
+        // which will slow down tracking.
+        // Only attempt if IP is not anonymized and provider lookups are not explicitly
+        // disabled for this request (?dp=1).
+        $anonymizedIP = substr($userInfo['ip'], -2, 2) == '.0';
+        $providerLookupDisabled = !empty($request->getParam('dp'));
+
+        if (!$anonymizedIP && !$providerLookupDisabled) {
+            $country = $this->getCountryUsingProviderExtensionIfValid($userInfo['ip']);
+        }
+        else {
+            Common::printDebug(sprintf("Skip country detection based on provider - reason %s", $providerLookupDisabled ? "Provider lookup is disabled for the request (dp=1)" : "IP is anonymized"));
+        }
 
         if (!empty($country)) {
             return $country;
