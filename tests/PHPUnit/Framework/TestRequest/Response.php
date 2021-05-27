@@ -12,7 +12,6 @@ use Piwik\API\Request;
 use PHPUnit\Framework\Assert as Asserts;
 use Exception;
 use Piwik\Tests\Framework\Fixture;
-use Piwik\Tests\Framework\TestCase\SystemTestCase;
 
 /**
  * Utility class used to obtain and process API responses for API tests.
@@ -235,7 +234,7 @@ class Response
 
         // check we didn't delete the whole string
         if ($testNotSmallAfter && $input != $oldInput) {
-            Asserts::assertTrue(strlen($input) > 100, "Removing element $xmlElement resulted in a too small value:\n$input");
+            Asserts::assertTrue(strlen($input) > 100, "Removing element $xmlElement from request " . http_build_query($this->requestUrl) . " resulted in a too small value:\n$input");
         }
         return $input;
     }
