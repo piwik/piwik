@@ -235,7 +235,7 @@ class Response
 
         // check we didn't delete the whole string
         if ($testNotSmallAfter && $input != $oldInput) {
-            Asserts::assertTrue(strlen($input) > 100, "Removing element $xmlElement resulted in a too small value");
+            Asserts::assertTrue(strlen($input) > 100, "Removing element $xmlElement resulted in a too small value:\n$input");
         }
         return $input;
     }
