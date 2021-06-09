@@ -45,7 +45,7 @@ abstract class Base extends \Piwik\Plugin\Report
         } else {
             $this->name = $goalNameFormatter(['name' => Piwik::translate('Goals_GoalsOverview')]);
         }
-        $this->parameters = ['idGoal' => 0];
+        $this->parameters = [];
         $this->order = $this->orderGoal;
         $availableReports[] = $this->buildReportMetadata();
 
