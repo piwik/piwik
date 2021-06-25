@@ -956,7 +956,7 @@ class ReleaseCheckListTest extends \PHPUnit\Framework\TestCase
      */
     private function isFileBelongToTests($file)
     {
-        return stripos($file, "/tests/") !== false || stripos($file, "/phantomjs/") !== false;
+        return stripos($file, "/tests/") !== false || stripos($file, "/phantomjs/") !== false || stripos($file, "/vendor/phpunit") !== false;
     }
 
     /**
