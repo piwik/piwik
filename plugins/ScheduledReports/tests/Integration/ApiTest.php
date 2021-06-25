@@ -6,14 +6,13 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
-namespace Piwik\Plugins\ScheduledReports\tests;
+namespace Piwik\Plugins\ScheduledReports\tests\Integration;
 
 use Piwik\API\Proxy;
 use Piwik\API\Request;
 use Piwik\Container\StaticContainer;
 use Piwik\DataTable;
 use Piwik\Date;
-use Piwik\Http\BadRequestException;
 use Piwik\Piwik;
 use Piwik\Plugins\MobileMessaging\API as APIMobileMessaging;
 use Piwik\Plugins\MobileMessaging\MobileMessaging;
