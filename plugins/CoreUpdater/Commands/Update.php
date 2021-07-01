@@ -207,7 +207,6 @@ print " 0\n";@ob_flush();
     {
         $output->writeln(array("    " . Piwik::translate('CoreUpdater_TheUpgradeProcessMayTakeAWhilePleaseBePatient'), ""));
 
-        print "  0\n";@ob_flush();
         $updaterResult = $updater->updateComponents($componentsWithUpdateFile);
 
         if (@$updaterResult['coreError']) {
@@ -215,7 +214,6 @@ print " 0\n";@ob_flush();
             print_r($updaterResult);@ob_flush();
             $this->handleCoreError($output, $updaterResult['errors'], $includeDiyHelp = true);
             return;
-        }
         print "  2\n";@ob_flush();
 
         if (!empty($updaterResult['warnings'])) {
@@ -225,7 +223,6 @@ print " 0\n";@ob_flush();
         if (!empty($updaterResult['errors'])) {
             $this->outputUpdaterErrors($output, $updaterResult['errors'], $updaterResult['deactivatedPlugins']);
         }
-        print "  3\n";@ob_flush();
 
         if (!empty($updaterResult['warnings'])
             || !empty($updaterResult['errors'])
