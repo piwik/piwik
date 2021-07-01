@@ -212,6 +212,7 @@ print " 0\n";@ob_flush();
 
         if (@$updaterResult['coreError']) {
             print "  1\n";@ob_flush();
+            print_r($updaterResult);@ob_flush();
             $this->handleCoreError($output, $updaterResult['errors'], $includeDiyHelp = true);
             return;
         }
@@ -275,7 +276,7 @@ print " 0\n";@ob_flush();
                 "    * " . Piwik::translate('CoreUpdater_ErrorDIYHelp_5')
             ));
         }
-
+print "  before throwing\n";
         throw new \RuntimeException(Piwik::translate('CoreUpdater_ConsoleUpdateFailure'));
     }
 
