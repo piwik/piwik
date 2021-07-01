@@ -125,12 +125,13 @@ print "start\n";@ob_flush();
             "",
             "    *** " . Piwik::translate('CoreUpdater_UpdateTitle') . " ***"
         ));
-
+print " 0\n";@ob_flush();
         // handle case of existing database with no tables
         if (!DbHelper::isInstalled()) {
             $this->handleCoreError($output, Piwik::translate('CoreUpdater_EmptyDatabaseError', Config::getInstance()->database['dbname']));
             return;
         }
+        print " 1\n";@ob_flush();
 
         $output->writeln(array(
             "",
@@ -164,6 +165,7 @@ print "start\n";@ob_flush();
         }
 
         $output->writeln("");
+        print " 2\n";@ob_flush();
 
         if ($doDryRun) {
             $this->doDryRun($updater, $output);
@@ -205,12 +207,15 @@ print "start\n";@ob_flush();
     {
         $output->writeln(array("    " . Piwik::translate('CoreUpdater_TheUpgradeProcessMayTakeAWhilePleaseBePatient'), ""));
 
+        print "  0\n";@ob_flush();
         $updaterResult = $updater->updateComponents($componentsWithUpdateFile);
 
         if (@$updaterResult['coreError']) {
+            print "  1\n";@ob_flush();
             $this->handleCoreError($output, $updaterResult['errors'], $includeDiyHelp = true);
             return;
         }
+        print "  2\n";@ob_flush();
 
         if (!empty($updaterResult['warnings'])) {
             $this->outputUpdaterWarnings($output, $updaterResult['warnings']);
@@ -219,6 +224,7 @@ print "start\n";@ob_flush();
         if (!empty($updaterResult['errors'])) {
             $this->outputUpdaterErrors($output, $updaterResult['errors'], $updaterResult['deactivatedPlugins']);
         }
+        print "  3\n";@ob_flush();
 
         if (!empty($updaterResult['warnings'])
             || !empty($updaterResult['errors'])
