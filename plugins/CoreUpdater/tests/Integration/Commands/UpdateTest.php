@@ -106,16 +106,10 @@ class UpdateTest extends ConsoleCommandTestCase
         $tableName = ArchiveTableCreator::getBlobTable(Date::factory('2015-01-01'));
         Db::exec("DROP TABLE $tableName");
 
-        try {
-            print "here";
-            @ob_flush();
-            $result = $this->applicationTester->run(array(
-                'command' => 'core:update',
-                '--yes' => true
-            ));
-        } catch (\Exception $ex) {
-            print "caught the exception: " . $ex->getMessage()."\n";@ob_flush();
-        }
+        $result = $this->applicationTester->run(array(
+            'command' => 'core:update',
+            '--yes' => true
+        ));
 
         $this->assertEquals(1, $result, $this->getCommandDisplayOutputErrorMessage());
         self::assertStringContainsString("Matomo could not be updated! See above for more information.", $this->applicationTester->getDisplay());

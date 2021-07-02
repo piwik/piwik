@@ -57,31 +57,25 @@ class Update extends ConsoleCommand
 
                 Filesystem::$skipCacheClearOnUpdate = true;
             }
-print "start\n";@ob_flush();
+
             $this->executeClearCaches();
 
             $yes = $input->getOption('yes');
 
             try {
-                print "1\n";@ob_flush();
                 $this->makeUpdate($input, $output, true);
-                print "2\n";@ob_flush();
 
                 if (!$yes) {
                     $yes = $this->askForUpdateConfirmation($input, $output);
                 }
-                print "3\n";@ob_flush();
 
                 if ($yes) {
                     $output->writeln("\n" . Piwik::translate('CoreUpdater_ConsoleStartingDbUpgrade'));
-                    print "4\n";@ob_flush();
 
                     $this->makeUpdate($input, $output, false);
-                    print "5\n";@ob_flush();
 
                     $this->writeSuccessMessage($output, array(Piwik::translate('CoreUpdater_PiwikHasBeenSuccessfullyUpgraded')));
                 } else {
-                    print "6\n";@ob_flush();
                     $this->writeSuccessMessage($output, array(Piwik::translate('CoreUpdater_DbUpgradeNotExecuted')));
                 }
 
@@ -125,13 +119,12 @@ print "start\n";@ob_flush();
             "",
             "    *** " . Piwik::translate('CoreUpdater_UpdateTitle') . " ***"
         ));
-print " 0\n";@ob_flush();
+
         // handle case of existing database with no tables
         if (!DbHelper::isInstalled()) {
             $this->handleCoreError($output, Piwik::translate('CoreUpdater_EmptyDatabaseError', Config::getInstance()->database['dbname']));
             return;
         }
-        print " 1\n";@ob_flush();
 
         $output->writeln(array(
             "",
@@ -207,16 +200,12 @@ print " 0\n";@ob_flush();
     {
         $output->writeln(array("    " . Piwik::translate('CoreUpdater_TheUpgradeProcessMayTakeAWhilePleaseBePatient'), ""));
 
-        print "  0\n";@ob_flush();
         $updaterResult = $updater->updateComponents($componentsWithUpdateFile);
 
         if (@$updaterResult['coreError']) {
-            print "  1\n";@ob_flush();
-            print_r($updaterResult);@ob_flush();
             $this->handleCoreError($output, $updaterResult['errors'], $includeDiyHelp = true);
             return;
         }
-        print "  2\n";@ob_flush();
 
         if (!empty($updaterResult['warnings'])) {
             $this->outputUpdaterWarnings($output, $updaterResult['warnings']);
@@ -275,8 +264,8 @@ print " 0\n";@ob_flush();
                 "    * " . Piwik::translate('CoreUpdater_ErrorDIYHelp_5')
             ));
         }
-print "  before throwing\n";
-        throw new \RuntimeException(Piwik::translate('CoreUpdater_ConsoleUpdateFailure'));
+
+        throw new \Exception(Piwik::translate('CoreUpdater_ConsoleUpdateFailure'));
     }
 
     private function outputUpdaterWarnings(OutputInterface $output, $warnings)
