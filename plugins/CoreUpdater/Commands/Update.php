@@ -86,6 +86,9 @@ class Update extends ConsoleCommand
                 // Do not fail if no updates were found
                 $this->writeSuccessMessage($output, array($e->getMessage()));
             }
+        } catch (\Exception $ex) {
+            print "catching prematurely: " . $ex->getMessage() . "\n";
+            return 1;
         } finally {
             Filesystem::$skipCacheClearOnUpdate = false;
         }
@@ -265,7 +268,7 @@ class Update extends ConsoleCommand
             ));
         }
 
-        throw new \Exception(Piwik::translate('CoreUpdater_ConsoleUpdateFailure'));
+        throw new \RuntimeException(Piwik::translate('CoreUpdater_ConsoleUpdateFailure'));
     }
 
     private function outputUpdaterWarnings(OutputInterface $output, $warnings)

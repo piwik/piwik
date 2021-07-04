@@ -494,7 +494,6 @@ class Updater
                 try {
                     $warnings = array_merge($warnings, $this->update($name));
                 } catch (UpdaterErrorException $e) {
-                    print $e->getMessage()."\n".$e->getTraceAsString()."\n";@ob_flush();
                     $errors[] = $e->getMessage();
                     if ($name == 'core') {
                         $coreError = true;

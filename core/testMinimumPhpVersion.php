@@ -82,7 +82,7 @@ if (!function_exists('Piwik_GetErrorMessagePage')) {
      * @return bool
      */
     function Piwik_ShouldPrintBackTraceWithMessage()
-    {
+    {return true;
         if (class_exists('\Piwik\SettingsServer')
             && class_exists('\Piwik\Common')
             && \Piwik\SettingsServer::isArchivePhpTriggered()
