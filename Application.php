@@ -878,6 +878,7 @@ class Application
         }
 
         if (null === $this->dispatcher) {
+            print "no dispatcher\n";@ob_flush();
             return $command->run($input, $output);
         }
 
@@ -886,8 +887,11 @@ class Application
 
         if ($event->commandShouldRun()) {
             try {
+                print "before command run\n";@ob_flush();
                 $exitCode = $command->run($input, $output);
+                print "after command run\n";@ob_flush();
             } catch (\Exception $e) {
+                print "caught exception in command run\n";@ob_flush();
                 $event = new ConsoleTerminateEvent($command, $input, $output, $e->getCode());
                 $this->dispatcher->dispatch(ConsoleEvents::TERMINATE, $event);
 
