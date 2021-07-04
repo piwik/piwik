@@ -86,9 +86,6 @@ class Update extends ConsoleCommand
                 // Do not fail if no updates were found
                 $this->writeSuccessMessage($output, array($e->getMessage()));
             }
-        } catch (\Exception $ex) {
-            print "catching prematurely: " . $ex->getMessage() . "\n";
-            return 1;
         } finally {
             Filesystem::$skipCacheClearOnUpdate = false;
         }
@@ -161,7 +158,6 @@ class Update extends ConsoleCommand
         }
 
         $output->writeln("");
-        print " 2\n";@ob_flush();
 
         if ($doDryRun) {
             $this->doDryRun($updater, $output);

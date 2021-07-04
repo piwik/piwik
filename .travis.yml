@@ -99,8 +99,8 @@ before_install:
 install:
   - git fetch -q
 
-  - export GENERATE_TRAVIS_YML_COMMAND="php ./tests/travis/generator/main.php generate:travis-yml --core --distribution=\"bionic\" --verbose"
-  - '[[ "$TRAVIS_JOB_NUMBER" != *.1 || "$TRAVIS_PULL_REQUEST" != "false" ]] || ./tests/travis/autoupdate_travis_yml.sh'
+  #- export GENERATE_TRAVIS_YML_COMMAND="php ./tests/travis/generator/main.php generate:travis-yml --core --distribution=\"bionic\" --verbose"
+  #- '[[ "$TRAVIS_JOB_NUMBER" != *.1 || "$TRAVIS_PULL_REQUEST" != "false" ]] || ./tests/travis/autoupdate_travis_yml.sh'
 
   - ./tests/travis/configure_git.sh
 
@@ -125,6 +125,7 @@ before_script:
   - ./tests/travis/setup_webserver.sh
   - ./tests/travis/install_phantomjs.sh; export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH;
 
+  - cp $PIWIK_ROOT_DIR/Application.php $PIWIK_ROOT_DIR/vendor/symfony/console/Symfony/Component/Console/Application.php
   - cd tests/PHPUnit
 
 after_script:
