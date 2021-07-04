@@ -123,7 +123,9 @@ class Application
         $this->configureIO($input, $output);
 
         try {
+            print "start\n";@ob_flush();
             $exitCode = $this->doRun($input, $output);
+            print "finish $exitCode\n";@ob_flush();
         } catch (\Exception $e) {
             print "run 1\n";@ob_flush();
             if (!$this->catchExceptions) {
