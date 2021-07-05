@@ -131,7 +131,7 @@ class Application
             if (!$this->catchExceptions) {
                 throw $e;
             }
-
+return 1;
             print "run 2\n";@ob_flush();
             if ($output instanceof ConsoleOutputInterface) {
                 $this->renderException($e, $output->getErrorOutput());
@@ -878,13 +878,7 @@ class Application
         }
 
         if (null === $this->dispatcher) {
-            print "no dispatcher\n";@ob_flush();
-            try {
-                return $command->run($input, $output);
-            } catch (\Exception $ex) {
-                print "caught: ".$ex->getMessage()."\n";@ob_flush();
-                return 1;
-            }
+            return $command->run($input, $output);
         }
 
         $event = new ConsoleCommandEvent($command, $input, $output);

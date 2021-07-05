@@ -106,6 +106,7 @@ class UpdateTest extends ConsoleCommandTestCase
         $tableName = ArchiveTableCreator::getBlobTable(Date::factory('2015-01-01'));
         Db::exec("DROP TABLE $tableName");
 
+        print "CHECK THIS TEST\n";@ob_flush();
         $result = $this->applicationTester->run(array(
             'command' => 'core:update',
             '--yes' => true
