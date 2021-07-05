@@ -879,7 +879,12 @@ class Application
 
         if (null === $this->dispatcher) {
             print "no dispatcher\n";@ob_flush();
-            return $command->run($input, $output);
+            try {
+                return $command->run($input, $output);
+            } catch (\Exception $ex) {
+                print "caught: ".$ex->getMessage()."\n";@ob_flush();
+                return 1;
+            }
         }
 
         $event = new ConsoleCommandEvent($command, $input, $output);

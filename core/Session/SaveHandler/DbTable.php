@@ -38,7 +38,7 @@ class DbTable implements Zend_Session_SaveHandler_Interface
         $this->maxLifetime = ini_get('session.gc_maxlifetime');
     }
 
-    private function hashSessionId($id)
+    public function hashSessionId($id)
     {
         $salt = SettingsPiwik::getSalt();
         return hash(self::TOKEN_HASH_ALGO, $id . $salt);
