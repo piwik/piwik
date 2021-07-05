@@ -127,7 +127,7 @@ class Application
             $exitCode = $this->doRun($input, $output);
             print "finish $exitCode\n";@ob_flush();
         } catch (\Exception $e) {
-            print "run 1\n";@ob_flush();
+            print "run 1 - ".$this->catchExceptions."\n";@ob_flush();
             return 1;
             if (!$this->catchExceptions) {
                 throw $e;
@@ -200,12 +200,7 @@ class Application
         $command = $this->find($name);
 
         $this->runningCommand = $command;
-        try {
-            $exitCode = $this->doRunCommand($command, $input, $output);
-        } catch (\Exception $ex) {
-            print "caught here?";
-            return 1;
-        }
+        $exitCode = $this->doRunCommand($command, $input, $output);
         $this->runningCommand = null;
 
         return $exitCode;
