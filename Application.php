@@ -128,10 +128,11 @@ class Application
             print "finish $exitCode\n";@ob_flush();
         } catch (\Exception $e) {
             print "run 1\n";@ob_flush();
+            return 1;
             if (!$this->catchExceptions) {
                 throw $e;
             }
-return 1;
+
             print "run 2\n";@ob_flush();
             if ($output instanceof ConsoleOutputInterface) {
                 $this->renderException($e, $output->getErrorOutput());
@@ -199,7 +200,12 @@ return 1;
         $command = $this->find($name);
 
         $this->runningCommand = $command;
-        $exitCode = $this->doRunCommand($command, $input, $output);
+        try {
+            $exitCode = $this->doRunCommand($command, $input, $output);
+        } catch (\Exception $ex) {
+            print "caught here?";
+            return 1;
+        }
         $this->runningCommand = null;
 
         return $exitCode;
