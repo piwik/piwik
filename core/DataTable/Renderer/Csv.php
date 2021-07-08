@@ -151,7 +151,7 @@ class Csv extends Renderer
             // when in xml we would output <result date="2008-01-15" />
             if (!empty($returned)) {
                 foreach ($returned as &$row) {
-                    $row = $currentLinePrefix . $this->separator . $row;
+                    $row = '"' . $currentLinePrefix . '"' . $this->separator . $row;
                 }
                 $str .= "\n" . implode("\n", $returned);
             }
