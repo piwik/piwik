@@ -126,7 +126,7 @@ class API extends \Piwik\Plugin\API
      *
      * @param int $idSite
      * @param string $name
-     * @param string $matchAttribute 'url', 'title', 'file', 'external_website', 'manually', 'visit_duration', 'visit_total_actions', 'visit_total_pageviews',
+     * @param string $matchAttribute 'url', 'title', 'file', 'external_website', 'manually', 'visit_duration', 'visit_total_actions', 'visit_nb_pageviews',
      *                               'event_action', 'event_category' or 'event_name'
      * @param string $pattern eg. purchase-confirmation.htm or numeric value if used with a numeric match attribute
      * @param string $patternType 'regex', 'contains', 'exact', or 'greater_than' for numeric match attributes

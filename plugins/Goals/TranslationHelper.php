@@ -58,7 +58,7 @@ class TranslationHelper
         );
     }
 
-    protected function getTranslationForMatchAttribute($match)
+    public function getTranslationForMatchAttribute($match)
     {
         switch ($match) {
             case 'manually':
@@ -71,15 +71,25 @@ class TranslationHelper
                 return Piwik::translate('Goals_VisitPageTitle');
 
             case 'event_category':
+                return sprintf('%1$s (%2$s)', Piwik::translate('Goals_SendEvent'), Piwik::translate('Events_EventCategory'));
+
             case 'event_action':
+                return sprintf('%1$s (%2$s)', Piwik::translate('Goals_SendEvent'), Piwik::translate('Events_EventAction'));
+
             case 'event_name':
-                return Piwik::translate('Goals_SendEvent');
+                return sprintf('%1$s (%2$s)', Piwik::translate('Goals_SendEvent'), Piwik::translate('Events_EventName'));
 
             case 'file':
                 return Piwik::translate('Goals_Download');
 
             case 'external_website':
                 return Piwik::translate('Goals_ClickOutlink');
+
+            case 'visit_duration':
+                return ucfirst(Piwik::translate('Goals_VisitDuration'));
+
+            case 'visit_nb_pageviews':
+                return Piwik::translate('Goals_VisitedPages');
 
             default:
                 return '';

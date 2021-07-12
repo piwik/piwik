@@ -195,7 +195,7 @@
         };
 
         this.isMatchAttributeNumeric = function () {
-            return ['visit_duration'].indexOf(this.goal.matchAttribute) > -1;
+            return ['visit_duration', 'visit_nb_pageviews'].indexOf(this.goal.matchAttribute) > -1;
         };
 
         this.initPatternType = function () {
@@ -207,7 +207,13 @@
         };
 
         this.getPatternFieldLabel = function () {
-            return this.goal.matchAttribute === 'visit_duration' ? _pk_translate('Goals_TimeInMinutes') : _pk_translate('Goals_Pattern');
+            if (this.goal.matchAttribute === 'visit_duration') {
+                return _pk_translate('Goals_TimeInMinutes');
+            } else if (this.goal.matchAttribute === 'visit_nb_pageviews') {
+                return _pk_translate('Goals_NumberOfPages');
+            }
+
+            return  _pk_translate('Goals_Pattern');
         };
 
         this.showListOfReports(false);

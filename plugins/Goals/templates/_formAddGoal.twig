@@ -67,6 +67,9 @@
                 <span ng-show="manageGoals.goal.matchAttribute == 'visit_duration'">
                     {{ 'Goals_VisitDuration'|translate }}
                 </span>
+                <span ng-show="manageGoals.goal.matchAttribute == 'visit_nb_pageviews'">
+                    {{ 'Goals_VisitedPages'|translate }}
+                </span>
             </h3>
         </div>
 
@@ -132,6 +135,9 @@
                 <span ng-show="manageGoals.goal.matchAttribute == 'visit_duration'">
                     {{ 'General_ForExampleShort'|translate }} {{ 'Goals_AtLeastMinutes'|translate('5', '0.5') }}
                 </span>
+                <span ng-show="manageGoals.goal.matchAttribute == 'visit_nb_pageviews'">
+                    {{ 'General_ForExampleShort'|translate }} {{ 'Goals_AtLeast'|translate('5') }}
+                </span>
             </div>
         </div>
 
@@ -143,7 +149,7 @@
 
         <div piwik-field uicontrol="radio" name="allow_multiple"
              ng-model="manageGoals.goal.allowMultiple"
-             ng-if="manageGoals.goal.matchAttribute !== 'visit_duration'"
+             ng-if="manageGoals.goal.matchAttribute !== 'visit_duration' && manageGoals.goal.matchAttribute !== 'visit_nb_pageviews'"
              options="{{ allowMultipleOptions|json_encode }}"
              introduction="{{ 'Goals_AllowMultipleConversionsPerVisit'|translate|e('html_attr') }}"
              inline-help="{{ 'Goals_HelpOneConversionPerVisit'|translate|e('html_attr') }}">

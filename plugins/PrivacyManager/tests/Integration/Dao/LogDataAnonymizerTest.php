@@ -200,6 +200,7 @@ class LogDataAnonymizerTest extends IntegrationTestCase
             'visit_exit_idaction_url' => '0',
             'visit_total_actions' => null,
             'visit_total_interactions' => '0',
+            'visit_total_pageviews' => '0',
             'visit_total_searches' => null,
             'referer_keyword' => null,
             'referer_name' => null,

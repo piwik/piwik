@@ -61,6 +61,7 @@ class GoalManager
 
     public static $NUMERIC_MATCH_ATTRIBUTES = [
         'visit_duration',
+        'visit_nb_pageviews',
     ];
 
     /**
@@ -219,6 +220,22 @@ class GoalManager
 
                 $visitDurationInSecs = $request->getCurrentTimestamp() - ((int) $firstActionTime);
                 $valueToMatchAgainst = $visitDurationInSecs / 60;
+                break;
+            case 'visit_nb_pageviews':
+                $totalInteractions = (int) $visitProperties->getProperty('visit_total_pageviews');
+
+                if ($action instanceof ActionPageview) {
+                    $totalInteractions++; // current action won't be included in interaction count
+                }
+
+                if (empty($totalInteractions)) {
+                    return null;
+                }
+
+                // total interactions includes searches, so get number of searches and remove them
+                $totalSearches = (int) $visitProperties->getProperty('visit_total_searches');
+
+                $valueToMatchAgainst = $totalInteractions - $totalSearches;
                 break;
             default:
                 return null;
@@ -561,7 +578,7 @@ class GoalManager
 
         foreach ($cleanedItems as $item) {
             $actionsToLookup = array();
-            list($sku, $name, $category, $price, $quantity) = $item;
+            [$sku, $name, $category, $price, $quantity] = $item;
             $actionsToLookup[] = array(trim($sku), Action::TYPE_ECOMMERCE_ITEM_SKU);
             $actionsToLookup[] = array(trim($name), Action::TYPE_ECOMMERCE_ITEM_NAME);
 

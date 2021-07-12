@@ -50,9 +50,12 @@
                     <td>{{ goal.name }}</td>
                     <td>{{ goal.description }}</td>
                     <td>
-                        <span class='matchAttribute'>{{ goal.match_attribute }}</span>
+
+                        <span class="matchAttribute">{{ translationHelper.getTranslationForMatchAttribute(goal.match_attribute) }}</span>
                         {% if goal.match_attribute == 'visit_duration' %}
                             {{ 'General_OperationGreaterThan'|translate|lcfirst }} {{ 'Intl_NMinutes'|translate(goal.pattern) }}
+                        {% elseif goal.match_attribute == 'visit_nb_pageviews' %}
+                            {{ 'General_OperationGreaterThan'|translate|lcfirst }} {{ goal.pattern }}
                         {% else %}
                         {% if goal.pattern_type is defined %}
                             <br/>
@@ -97,26 +100,3 @@
     <input role="yes" type="button" value="{{ 'General_Yes'|translate }}"/>
     <input role="no" type="button" value="{{ 'General_No'|translate }}"/>
 </div>
-
-<script type="text/javascript">
-    var goalTypeToTranslation = {
-        "manually": "{{ 'Goals_ManuallyTriggeredUsingJavascriptFunction'|translate }}",
-        "file": "{{ 'Goals_Download'|translate }}",
-        "url": "{{ 'Goals_VisitUrl'|translate }}",
-        "title": "{{ 'Goals_VisitPageTitle'|translate }}",
-        "external_website": "{{ 'Goals_ClickOutlink'|translate }}",
-        "event_action": "{{ 'Goals_SendEvent'|translate }} ({{ 'Events_EventAction'|translate }})",
-        "event_category": "{{ 'Goals_SendEvent'|translate }} ({{ 'Events_EventCategory'|translate }})",
-        "event_name": "{{ 'Goals_SendEvent'|translate }} ({{ 'Events_EventName'|translate }})",
-        "visit_duration": "{{ 'Goals_VisitDuration'|translate|ucfirst }}"
-    };
-
-    $(document).ready(function () {
-        // translation of the goal "match attribute" to human readable description
-        $('.matchAttribute').each(function () {
-            var matchAttribute = $(this).text();
-            var translation = goalTypeToTranslation[matchAttribute];
-            $(this).text(translation);
-        });
-    });
-</script>

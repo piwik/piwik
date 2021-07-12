@@ -51,6 +51,12 @@
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
+		<name>Number of Pageviews</name>
+		<segment>pageviews</segment>
+	</row>
+	<row>
+		<type>metric</type>
+		<category>Visitors</category>
 		<name>Number of visits</name>
 		<segment>visitCount</segment>
 	</row>

@@ -371,5 +371,6 @@ class Goals extends \Piwik\Plugin
         $translationKeys[] = 'Goals_TimeInMinutes';
         $translationKeys[] = 'Goals_Pattern';
         $translationKeys[] = 'Goals_ClickToViewThisGoal';
+        $translationKeys[] = 'Goals_NumberOfPages';
     }
 }

@@ -55,6 +55,13 @@
 	<row>
 		<type>metric</type>
 		<category>Visitors</category>
+		<name>Number of Pageviews</name>
+		<segment>pageviews</segment>
+		<acceptedValues>Any positive integer</acceptedValues>
+	</row>
+	<row>
+		<type>metric</type>
+		<category>Visitors</category>
 		<name>Number of visits</name>
 		<segment>visitCount</segment>
 	</row>
