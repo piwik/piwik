@@ -287,7 +287,7 @@ class HttpTest extends \PHPUnit\Framework\TestCase
     public function testFopenHttpsFailsWithInvalidCertificate()
     {
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('failed to open stream');
+        $this->expectExceptionMessageMatches('/failed to open stream/i');
 
         // use a domain from https://badssl.com/
         Http::sendHttpRequestBy('fopen', 'https://self-signed.badssl.com/', 10);

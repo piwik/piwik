@@ -6,7 +6,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
-namespace Piwik\Plugins\UserCountry\tests;
+namespace Piwik\Plugins\UserCountry\tests\Integration;
 
 use Piwik\Access;
 use Piwik\Common;
@@ -87,6 +87,9 @@ class APITest extends IntegrationTestCase
         if (!empty($ipAddressHeader)) {
             $_SERVER['REMOTE_ADDR'] = $ipAddressHeader;
         }
+
+        // Default provider will guess the location based on HTTP_ACCEPT_LANGUAGE header
+        $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'en_US';
 
         $location = $this->api->getLocationFromIP($ipAddress);
         $this->assertEquals($expected, $location);

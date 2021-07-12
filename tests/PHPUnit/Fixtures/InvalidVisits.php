@@ -125,7 +125,7 @@ class InvalidVisits extends Fixture
         Cache::regenerateCacheWebsiteAttributes([1]);
 
         try {
-            @$t->setAttributionInfo(array());
+            @$t->setAttributionInfo(json_encode(array()));
             self::fail();
         } catch (Exception $e) {
         }

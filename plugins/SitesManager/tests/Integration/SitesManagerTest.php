@@ -168,6 +168,8 @@ class SitesManagerTest extends IntegrationTestCase
 
         $_GET['idSite'] = $this->siteId;
 
+        \Zend_Session::$_unitTestEnabled = true;
+
         Piwik::postEvent('Request.dispatch', [&$module, &$action, &$params]);
 
         $this->assertEquals('SitesManager', $module);

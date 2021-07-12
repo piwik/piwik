@@ -62,7 +62,7 @@ class ApiTest extends SystemTestCase
                 'idSite' => 1,
                 'date' => '2010-01-01',
                 'periods' => 'year',
-                'testSuffix' => 'phpSerialized' . (version_compare(PHP_VERSION, '7.4', '>=') ? '74' : ''),
+                'testSuffix' => 'phpSerialized' . (version_compare(PHP_VERSION, '8', '>=') ? 8 : (version_compare(PHP_VERSION, '7.4', '>=') ? '74' : '')),
                 'format' => 'original',
             ],
         ];

@@ -227,6 +227,9 @@ class BackwardsCompatibility1XTest extends SystemTestCase
             // visit length changes slightly with change to previous visitor detection in #13935
             'VisitsSummary.getSumVisitsLength',
             'VisitsSummary.getSumVisitsLengthPretty',
+
+            // did not exist before Matomo 4
+            'PagePerformance.get',
         );
 
         if (!Manager::getInstance()->isPluginActivated('CustomVariables')) {

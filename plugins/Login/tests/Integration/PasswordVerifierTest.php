@@ -31,6 +31,8 @@ class PasswordVerifierTest extends IntegrationTestCase
     {
         parent::setUp();
 
+        \Zend_Session::$_unitTestEnabled = true;
+
         $this->verifier = new CustomPasswordVerifier();
         $this->verifier->setDisableRedirect();
     }
