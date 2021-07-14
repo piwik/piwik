@@ -8,6 +8,7 @@
  */
 namespace Piwik\Plugins\Login\Security;
 
+use Piwik\API\Request;
 use Piwik\Common;
 use Piwik\Container\StaticContainer;
 use Piwik\Date;
@@ -16,6 +17,7 @@ use Piwik\Option;
 use Piwik\Plugins\Login\Emails\SuspiciousLoginAttemptsInLastHourEmail;
 use Piwik\Plugins\Login\Model;
 use Piwik\Plugins\Login\SystemSettings;
+use Piwik\SettingsServer;
 use Piwik\Updater;
 use Piwik\Version;
 use Psr\Log\LoggerInterface;
@@ -24,6 +26,7 @@ class BruteForceDetection {
 
     const OVERALL_LOGIN_LOCKOUT_THRESHOLD_MIN = 10;
     const TABLE_NAME = 'brute_force_log';
+    const API_LOGIN_PLACEHOLDER = '__API__';
 
     private $minutesTimeRange;
     private $maxLogAttempts;
@@ -68,6 +71,10 @@ class BruteForceDetection {
 
     public function addFailedAttempt($ipAddress, $login = null)
     {
+        if (empty($login) && Request::isRootRequestApiRequest()) {
+            $login = self::API_LOGIN_PLACEHOLDER;
+        }
+
         $now = $this->getNow()->getDatetime();
         $db = Db::get();
         try {

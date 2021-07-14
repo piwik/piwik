@@ -8,6 +8,7 @@
 
 namespace Piwik\Plugins\Login\tests\Integration\Security;
 
+use Piwik\API\Request;
 use Piwik\Common;
 use Piwik\Date;
 use Piwik\Db;
@@ -77,6 +78,31 @@ class BruteForceDetectionTest extends IntegrationTestCase
     public function test_isEnabled_isEnabledByDefault()
     {
         $this->assertTrue($this->detection->isEnabled());
+    }
+
+    public function test_addFailedAttempt_usesApiUsernameIfInApiRequest()
+    {
+        $this->addFailedLoginInPast('127.0.0.1', 1);
+
+        Request::setIsRootRequestApiRequest(true);
+        $this->addFailedLoginInPast('10.1.2.3', 3);
+
+        $entries = $this->detection->getAll();
+        $expected = [
+            [
+                'id_brute_force_log' => '1',
+                'ip_address' => '127.0.0.1',
+                'attempted_at' => '2018-09-23 12:39:10',
+                'login' => null,
+            ],
+            [
+                'id_brute_force_log' => '2',
+                'ip_address' => '10.1.2.3',
+                'attempted_at' => '2018-09-23 12:37:10',
+                'login' => BruteForceDetection::API_LOGIN_PLACEHOLDER,
+            ],
+        ];
+        $this->assertEquals($expected, $entries);
     }
 
     public function test_addFailedAttempt_addsEntries()
