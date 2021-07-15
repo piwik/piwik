@@ -80,13 +80,19 @@ class IP
 
         $proxyIps[] = $default;
 
+        $shouldReadLastProxyIp = Config::getInstance()->General['proxy_ip_read_last_in_list'] == 1;
+
         // examine proxy headers
         foreach ($proxyHeaders as $proxyHeader) {
             if (!empty($_SERVER[$proxyHeader])) {
                 // this may be buggy if someone has proxy IPs and proxy host headers configured as
                 // `$_SERVER[$proxyHeader]` could be eg $_SERVER['HTTP_X_FORWARDED_HOST'] and
                 // include an actual host name, not an IP
-                $proxyIp = self::getFirstIpFromList($_SERVER[$proxyHeader], $proxyIps);
+                if ($shouldReadLastProxyIp) {
+                    $proxyIp = self::getLastIpFromList($_SERVER[$proxyHeader], $proxyIps);
+                } else {
+                    $proxyIp = self::getFirstIpFromList($_SERVER[$proxyHeader], $proxyIps);
+                }
                 if (strlen($proxyIp) && stripos($proxyIp, 'unknown') === false) {
                     return $proxyIp;
                 }
@@ -107,20 +113,38 @@ class IP
     {
         $p = strrpos($csv, ',');
         if ($p !== false) {
-            $elements = explode(',', $csv);
-            foreach ($elements as $ipString) {
-                $element = trim(Common::sanitizeInputValue($ipString));
-                if(empty($element)) {
-                    continue;
-                }
-                $ip = \Matomo\Network\IP::fromStringIP(IPUtils::sanitizeIp($element));
-                if (empty($excludedIps) || (!in_array($element, $excludedIps) && !$ip->isInRanges($excludedIps))) {
-                    return $element;
-                }
-            }
-
-            return '';
+            $elements = self::getIpsFromList($csv, $excludedIps);
+            return reset($elements) ?: '';
         }
         return trim(Common::sanitizeInputValue($csv));
+    }
+
+    public static function getLastIpFromList($csv, $excludedIps = null)
+    {
+        $p = strrpos($csv, ',');
+        if ($p !== false) {
+            $elements = self::getIpsFromList($csv, $excludedIps);
+            return end($elements) ?: '';
+        }
+        return trim(Common::sanitizeInputValue($csv));
+    }
+
+    private static function getIpsFromList(string $csv, ?array $excludedIps)
+    {
+        $result = [];
+
+        $elements = explode(',', $csv);
+        foreach ($elements as $ipString) {
+            $element = trim(Common::sanitizeInputValue($ipString));
+            if(empty($element)) {
+                continue;
+            }
+            $ip = \Matomo\Network\IP::fromStringIP(IPUtils::sanitizeIp($element));
+            if (empty($excludedIps) || (!in_array($element, $excludedIps) && !$ip->isInRanges($excludedIps))) {
+                $result[] = $element;
+            }
+        }
+
+        return $result;
     }
 }

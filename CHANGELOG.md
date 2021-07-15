@@ -11,6 +11,10 @@ The Product Changelog at **[matomo.org/changelog](https://matomo.org/changelog)*
 * The `logme` method for automatic logins is now disabled by default for new installations. For existing installations it will be enabled automatically on update. If you do not need it please consider disabling it again for security reasons by setting `login_allow_logme = 0` in `General` section of `config.ini.php`.
 * The redirect using the `url` param for the automatic login action `logme`, will no longer do redirects to untrusted hosts. If you need to do redirects to other URLs on purpose, please add the according hosts as `trusted_hosts` entry in `config.ini.php`
 
+### New config.ini.php settings
+
+* When determining the client IP address from proxy headers like X-Forwarded-For, Matomo will by default look at the first IP in the list. If you need to read the last IP instead, the new INI config option `[General] proxy_ip_read_last_in_list` be set to `1`. Using the last IP can be more secure when you are using proxy headers in combination with a load balancer.
+
 ### Changes to events
 
 * It is now possible via the Mail.send event to abort sending emails. Set the `$mail` event parameter to null to do this.

@@ -196,4 +196,40 @@ class IPTest extends \PHPUnit\Framework\TestCase
         // with excluded Ips
         $this->assertEquals('', IP::getFirstIpFromList('10.10.10.10, 10.10.10.10', array('10.10.10.10')));
     }
+
+    /**
+     * Dataprovider for testGetLastIpFromList
+     */
+    public function getLastIpFromListTestData()
+    {
+        return array(
+            array('', ''),
+            array('127.0.0.1', '127.0.0.1'),
+            array(' 127.0.0.1 ', '127.0.0.1'),
+            array(' 192.168.1.1, 127.0.0.1', '127.0.0.1'),
+            array('192.168.1.1 ,127.0.0.1 ', '127.0.0.1'),
+            array('2001:db8:cafe::17 , 192.168.1.1', '192.168.1.1'),
+            array('192.168.1.1 , 2001:db8:cafe::17', '2001:db8:cafe::17'),
+            array('192.168.1.1,', '192.168.1.1'),
+            array(',192.168.1.1,', '192.168.1.1'),
+        );
+    }
+
+    /**
+     * @dataProvider getLastIpFromListTestData
+     */
+    public function testGetLastIpFromList($csv, $expected)
+    {
+        // without excluded IPs
+        $this->assertEquals($expected, IP::getLastIpFromList($csv));
+
+        // with excluded Ips
+        $this->assertEquals($expected, IP::getLastIpFromList($csv . ', 10.10.10.10', array('10.10.10.10')));
+    }
+
+    public function testGetLastIpFromList_shouldReturnAnEmptyString_IfMultipleIpsAreGivenButAllAreExcluded()
+    {
+        // with excluded Ips
+        $this->assertEquals('', IP::getLastIpFromList('10.10.10.10, 10.10.10.10', array('10.10.10.10')));
+    }
 }
