@@ -38,6 +38,11 @@ class ActivatePlugin extends ConsoleCommand
                 continue;
             }
 
+            if (!$pluginManager->isPluginInFilesystem($plugin)) {
+                $output->writeln("<error>Cannot find plugin files for $plugin.</error>");
+                continue;
+            }
+
             if ($dependencies = $pluginManager->loadPlugin($plugin)->getMissingDependenciesAsString()) {
                 $output->writeln("<error>$dependencies</error>");
                 continue;

@@ -1184,6 +1184,7 @@ class Manager
         if (isset($this->loadedPlugins[$pluginName])) {
             return $this->loadedPlugins[$pluginName];
         }
+
         $newPlugin = $this->makePluginClass($pluginName);
 
         $this->addLoadedPlugin($pluginName, $newPlugin);
