@@ -100,13 +100,7 @@ class Session extends Zend_Session
                 @ini_set('session.serialize_handler', 'php_serialize');
             }
 
-            $config = array(
-                'name'           => Common::prefixTable(DbTable::TABLE_NAME),
-                'primary'        => 'id',
-                'modifiedColumn' => 'modified',
-                'dataColumn'     => 'data',
-                'lifetimeColumn' => 'lifetime',
-            );
+            $config = self::getDbTableConfig();
 
             $saveHandler = new DbTable($config);
             if ($saveHandler) {
@@ -225,5 +219,16 @@ class Session extends Zend_Session
 
         Common::sendHeader($headerStr);
         return $headerStr;
+    }
+
+    public static function getDbTableConfig()
+    {
+        return array(
+            'name'           => Common::prefixTable(DbTable::TABLE_NAME),
+            'primary'        => 'id',
+            'modifiedColumn' => 'modified',
+            'dataColumn'     => 'data',
+            'lifetimeColumn' => 'lifetime',
+        );
     }
 }

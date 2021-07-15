@@ -18,6 +18,7 @@ use Piwik\Session\SessionNamespace;
  */
 class Manager
 {
+    const MAX_NOTIFICATIONS_IN_SESSION = 30;
     /**
      * @var SessionNamespace
      */
@@ -36,6 +37,8 @@ class Manager
      *                           element ID. It can only contain alphanumeric characters (underscores can
      *                           be used).
      * @param Notification $notification The notification to post.
+     * @return bool true if the notification was added, false if it was ignored because there were too many
+     *                   pending ones.
      * @api
      */
     public static function notify($id, Notification $notification)
@@ -43,7 +46,7 @@ class Manager
         self::checkId($id);
 
         self::removeOldestNotificationsIfThereAreTooMany();
-        self::addNotification($id, $notification);
+        return self::addNotification($id, $notification);
     }
 
     /**
@@ -103,7 +106,7 @@ class Manager
             throw new \Exception('Notification ID is empty.');
         }
 
-        if (!preg_match('/^(\w)*$/', $id)) {
+        if (!preg_match('/^\w*$/', $id)) {
             throw new \Exception('Invalid Notification ID given. Only word characters (AlNum + underscore) allowed.');
         }
     }
@@ -112,9 +115,15 @@ class Manager
     {
         self::saveNotificationAcrossUiRequestsIfNeeded($id, $notification);
 
+        if (count(self::$notifications) >= self::MAX_NOTIFICATIONS_IN_SESSION) {
+            return false;
+        }
+
         // we store all kinda notifications here so in case the session is not enabled or disabled later there is still
         // a chance it gets delivered to the UI during the same request.
         self::$notifications[$id] = $notification;
+
+        return true;
     }
 
     private static function saveNotificationAcrossUiRequestsIfNeeded($id, Notification $notification)
@@ -133,7 +142,7 @@ class Manager
             return;
         }
 
-        $maxNotificationsInSession = 30;
+        $maxNotificationsInSession = self::MAX_NOTIFICATIONS_IN_SESSION;
 
         $session = static::getSession();
 
@@ -199,5 +208,16 @@ class Manager
         }
 
         return static::$session;
+    }
+
+    public static function cancelAllNotifications()
+    {
+        self::$notifications = [];
+    }
+
+    // for tests
+    public static function getPendingInMemoryNotifications()
+    {
+        return self::$notifications;
     }
 }

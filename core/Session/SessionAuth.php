@@ -13,10 +13,12 @@ use Piwik\Auth;
 use Piwik\AuthResult;
 use Piwik\Common;
 use Piwik\Config;
+use Piwik\Container\StaticContainer;
 use Piwik\Date;
 use Piwik\Plugins\UsersManager\Model;
 use Piwik\Plugins\UsersManager\Model as UsersModel;
 use Piwik\Session;
+use Psr\Log\LoggerInterface;
 
 /**
  * Validates already authenticated sessions.
@@ -93,6 +95,8 @@ class SessionAuth implements Auth
     {
         $sessionFingerprint = new SessionFingerprint();
         $userModel = $this->userModel;
+
+        $this->checkIfSessionFailedToRead();
 
         if ($this->isExpiredSession($sessionFingerprint)) {
             $sessionFingerprint->clear();
@@ -230,5 +234,13 @@ class SessionAuth implements Auth
 
         $isExpired = Date::now()->getTimestampUTC() > $expirationTime;
         return $isExpired;
+    }
+
+    private function checkIfSessionFailedToRead()
+    {
+        if (Session\SaveHandler\DbTable::$wasSessionToLargeToRead) {
+            StaticContainer::get(LoggerInterface::class)->warning(
+                "Too much data stored in the session so it could not be read properly. If you were logged out, this is why.");
+        }
     }
 }

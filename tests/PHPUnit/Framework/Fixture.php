@@ -43,6 +43,7 @@ use Piwik\Plugins\UserCountry\LocationProvider;
 use Piwik\Plugins\UsersManager\API as APIUsersManager;
 use Piwik\Plugins\UsersManager\UsersManager;
 use Piwik\ReportRenderer;
+use Piwik\Session\SaveHandler\DbTable;
 use Piwik\SettingsPiwik;
 use Piwik\SettingsServer;
 use Piwik\Singleton;
@@ -392,6 +393,7 @@ class Fixture extends \PHPUnit\Framework\Assert
 
     public static function clearInMemoryCaches($resetTranslations = true)
     {
+        DbTable::$wasSessionToLargeToRead = false;
         Date::$now = null;
         FrontController::$requestId = null;
         Cache::$cache = null;
@@ -410,6 +412,7 @@ class Fixture extends \PHPUnit\Framework\Assert
         \Piwik\Plugins\ScheduledReports\API::$cache = array();
         Singleton::clearAll();
         PluginsArchiver::$archivers = array();
+        \Piwik\Notification\Manager::cancelAllNotifications();
 
         Plugin\API::unsetAllInstances();
         $_GET = $_REQUEST = array();

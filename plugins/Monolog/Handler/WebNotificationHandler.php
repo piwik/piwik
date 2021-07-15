@@ -20,6 +20,8 @@ use Zend_Session_Exception;
  */
 class WebNotificationHandler extends AbstractProcessingHandler
 {
+    const MAX_NOTIFICATION_MESSAGE_LENGTH = 512;
+
     public function isHandling(array $record)
     {
         if (!empty($record['context']['ignoreInScreenWriter'])) {
@@ -46,7 +48,11 @@ class WebNotificationHandler extends AbstractProcessingHandler
                 break;
         }
 
-        $message = $record['level_name'] . ': ' . htmlentities($record['message'], ENT_COMPAT | ENT_HTML401, 'UTF-8');
+        $recordMessage = $record['message'];
+        $recordMessage = str_replace(PIWIK_INCLUDE_PATH, '', $recordMessage);
+        $recordMessage = substr($recordMessage, 0, self::MAX_NOTIFICATION_MESSAGE_LENGTH);
+
+        $message = $record['level_name'] . ': ' . htmlentities($recordMessage, ENT_COMPAT | ENT_HTML401, 'UTF-8');
         $message .= $this->getLiteDebuggingInfo();
 
         $notification = new Notification($message);

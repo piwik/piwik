@@ -23,6 +23,9 @@ use Zend_Session_SaveHandler_Interface;
  */
 class DbTable implements Zend_Session_SaveHandler_Interface
 {
+    const SESSION_DATA_MAX_LEN = 65535;
+    public static $wasSessionToLargeToRead = false;
+
     protected $config;
     protected $maxLifetime;
 
@@ -93,6 +96,13 @@ class DbTable implements Zend_Session_SaveHandler_Interface
             . ' AND ' . $this->config['modifiedColumn'] . ' + ' . $this->config['lifetimeColumn'] . ' >= ?';
 
         $result = $this->fetchOne($sql, array($id, time()));
+
+        // if the session was too large to read, we want to notice this rather than just fail to read the session.
+        // otherwise, the user would just be logged out and we would have no idea why. the value we set is read
+        // later in SessionAuth so we can correctly log the issue.
+        if (strlen($result) >= self::SESSION_DATA_MAX_LEN) {
+            self::$wasSessionToLargeToRead = true;
+        }
 
         if (!$result) {
             $result = '';
