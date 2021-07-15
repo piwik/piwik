@@ -92,7 +92,7 @@ port =
 enable_logging = 0
 
 [log]
-; possible values for log: screen, database, file
+; possible values for log: screen, database, file, errorlog, syslog
 log_writers[] = screen
 
 ; log level, everything logged w/ this level or one of greater severity
@@ -105,9 +105,15 @@ log_level = WARN
 ; this allows you to log more information to one backend vs another.
 ; log_level_screen =
 ; log_level_file =
+; log_level_errorlog =
+; log_level_syslog =
 
 ; if configured to log in a file, log entries will be made to this file
 logger_file_path = tmp/logs/matomo.log
+
+; if configured to log to syslog, mark them with this identifier string.
+; This acts as an easy-to-find tag in the syslog.
+logger_syslog_ident = 'matomo'
 
 [Cache]
 ; available backends are 'file', 'array', 'null', 'redis', 'chained'

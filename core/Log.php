@@ -38,8 +38,9 @@ use Psr\Log\LoggerInterface;
  * The following configuration options can be set:
  *
  * - `log_writers[]`: This is an array of log writer IDs. The three log writers provided
- *                    by Piwik core are **file**, **screen** and **database**. You can
- *                    get more by installing plugins. The default value is **screen**.
+ *                    by Piwik core are **file**, **screen**, **database**, **errorlog**, 
+ *                    and **syslog**. You can get more by installing plugins. The default 
+ *                    value is **screen**.
  * - `log_level`: The current log level. Can be **ERROR**, **WARN**, **INFO**, **DEBUG**,
  *                or **VERBOSE**. Log entries made with a log level that is as or more
  *                severe than the current log level will be outputted. Others will be
@@ -48,6 +49,9 @@ use Psr\Log\LoggerInterface;
  *                       to log to or a path to a directory to store logs in. If a
  *                       directory, the file name is piwik.log. Can be relative to
  *                       Piwik's root dir or an absolute path. Defaults to **tmp/logs**.
+ * - `logger_syslog_ident`: If configured to log to syslog, mark them with this 
+ *                          identifier string.  This acts as an easy-to-find tag in 
+ *                          the syslog.
  *
  *
  * @deprecated Inject and use Psr\Log\LoggerInterface instead of this class.
